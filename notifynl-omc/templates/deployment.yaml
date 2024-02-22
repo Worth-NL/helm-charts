@@ -1,0 +1,55 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ include "app.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  {{- if .Values.appSelector.labels }}
+  labels:
+    {{- .Values.appSelector.labels | toYaml | nindent 4 }}
+    {{- if .Values.additionalLabels }}
+      {{- .Values.additionalLabels | toYaml | nindent 4 }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.deployment.annotations }}
+  annotations:
+    {{- .Values.deployment.annotations | toYaml | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  {{- if .Values.appSelector.labels }}
+  selector:
+    matchLabels:
+      {{- .Values.appSelector.labels | toYaml | nindent 6 }}
+      {{- if .Values.additionalLabels }}
+        {{- .Values.additionalLabels | toYaml | nindent 6 }}
+      {{- end }}
+  {{- end }}
+  template:
+    metadata:
+      {{- if .Values.appSelector.labels }}
+      labels:
+        {{- .Values.appSelector.labels | toYaml | nindent 8 }}
+        {{- if .Values.additionalLabels }}
+          {{- .Values.additionalLabels | toYaml | nindent 8 }}
+        {{- end }}
+      {{- end }}
+    spec:
+      containers:
+        - name: omc
+          image: {{ .Values.deployment.image }}:{{- .Chart.AppVersion }}
+          command:
+            - dotnet
+            - NotifyNL.EventsHandler.dll
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: {{ include "app.fullname" . }}-config
+                optional: false
+            - secretRef:
+                name: {{ include "app.fullname" . }}-secret
+                optional: false
+          ports:
+            - protocol: {{ .Values.deployment.containers.omc.portHttp.protocol }}
+              containerPort: {{ .Values.deployment.containers.omc.portHttp.containerPort }}
+            - protocol: {{ .Values.deployment.containers.omc.portHttps.protocol }}
+              containerPort: {{ .Values.deployment.containers.omc.portHttps.containerPort }}

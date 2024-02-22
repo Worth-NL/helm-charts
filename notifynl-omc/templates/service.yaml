@@ -1,0 +1,31 @@
+{{- if .Values.service.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "app.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  {{- if .Values.appSelector.labels }}
+  labels:
+    {{- .Values.appSelector.labels | toYaml | nindent 4 }}
+    {{- if .Values.additionalLabels }}
+      {{- .Values.additionalLabels | toYaml | nindent 4 }}
+    {{- end }}
+  {{- end }}
+spec:
+  ports:
+    - name: http
+      protocol: {{ .Values.deployment.containers.omc.portHttp.protocol }}
+      port: {{ .Values.deployment.containers.omc.portHttp.containerPort }}
+      targetPort: {{ .Values.deployment.containers.omc.portHttp.containerPort }}
+    - name: https
+      protocol: {{ .Values.deployment.containers.omc.portHttps.protocol }}
+      port: {{ .Values.deployment.containers.omc.portHttps.containerPort }}
+      targetPort: {{ .Values.deployment.containers.omc.portHttps.containerPort }}
+  {{- if .Values.appSelector.labels }}
+  selector:
+    {{- .Values.appSelector.labels | toYaml | nindent 4 }}
+    {{- if .Values.additionalLabels }}
+      {{- .Values.additionalLabels | toYaml | nindent 4 }}
+    {{- end }}
+  {{- end }}
+{{- end }}

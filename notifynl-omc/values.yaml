@@ -1,0 +1,77 @@
+# -- Overrides the chart's computed fullname
+fullnameOverride:
+
+appSelector:
+  labels:
+    app.kubernetes.io/name: omc
+    app.kubernetes.io/component: omc
+    app.kubernetes.io/part-of: notifynl
+
+additionalLabels: {}
+
+deployment:
+  # -- Define the amount of instances
+  replicas: 1
+  image: worthnl/notifynl-omc
+  annotations: {}
+  containers:
+    omc:
+      portHttp:
+        protocol: TCP
+        containerPort: 5270
+      portHttps:
+        protocol: TCP
+        containerPort: 7042
+
+service:
+  enabled: true
+
+ingress:
+  enabled: false
+  hostname:
+  ingressClassName:
+  annotations: {}
+  whitelist: []
+  tls:
+    enabled: true
+    secretName:
+
+settings:
+  notify:
+    api:
+      baseUrl: https://api.notifynl.nl
+    authorization:
+      jwt:
+        secret:
+        issuer:
+        audience:
+        expiresInMin:
+        userId:
+        userName:
+  user:
+    authorization:
+      jwt:
+        secret:
+        issuer:
+        audience:
+        expiresInMin:
+        userId:
+        userName:
+      key:
+        notifyNl:
+        objecten:
+    domain:
+      openNotificaties:
+      openZaak:
+      openKlant:
+      objecten:
+      objectTypen:
+    templateIds:
+      sms:
+        zaakCreate:
+        zaakUpdate:
+        zaakClose:
+      email:
+        zaakCreate:
+        zaakUpdate:
+        zaakClose:
