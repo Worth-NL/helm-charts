@@ -1,9 +1,9 @@
 apiVersion: v2
 name: notifynl-omc
-version: "1.0.0"
+version: "0.2.0-alpha"
 appVersion: "latest"
 kubeVersion: ">=1.27.7"
-description: "insert description here"
+description: "placeholder"
 icon: "https://avatars.githubusercontent.com/u/138866112?s=200&v=4"
 maintainers:
   - name: "Pier-Angelo Gaetani"
@@ -18,4 +18,10 @@ annotations:
   artifacthub.io/license: "EUPL-1.2"
   artifacthub.io/links: |
     - name: "Chart source"
-      url: "chart source url"
+      url: "https://github.com/Worth-NL/helm-charts"
+    - name: "App source"
+      url: "https://github.com/Worth-NL/NotifyNL-OMC"
+dependencies:
+  - name: dh-lib
+    version: 0.1.5
+    repository: https://gemeente-denhaag.github.io/helm-charts/
