@@ -5,12 +5,18 @@ entries:
       artifacthub.io/license: EUPL-1.2
       artifacthub.io/links: |
         - name: "Chart source"
-          url: "chart source url"
+          url: "https://github.com/Worth-NL/helm-charts"
+        - name: "App source"
+          url: "https://github.com/Worth-NL/NotifyNL-OMC"
     apiVersion: v2
     appVersion: latest
-    created: "2024-02-22T09:54:55.268953658+01:00"
-    description: insert description here
-    digest: 72dabd3dd7e57a6c3c06e3444e33bfe9fe986dcd3c763e18919303fc520fba42
+    created: "2024-02-28T14:47:36.249357385+01:00"
+    dependencies:
+    - name: dh-lib
+      repository: https://gemeente-denhaag.github.io/helm-charts/
+      version: 0.1.5
+    description: placeholder
+    digest: e1a5ca88e7bc5439b09aaa7c17c34b75ca837276a86c4524c350eccb420ab391
     icon: https://avatars.githubusercontent.com/u/138866112?s=200&v=4
     keywords:
     - notifynl
@@ -24,6 +30,6 @@ entries:
     name: notifynl-omc
     type: application
     urls:
-    - https://github.com/Worth-NL/helm-charts/notifynl-omc-1.0.0.tgz
-    version: 1.0.0
-generated: "2024-02-22T09:54:55.268533619+01:00"
+    - https://github.com/Worth-NL/helm-charts/notifynl-omc-0.2.0-alpha.tgz
+    version: 0.2.0-alpha
+generated: "2024-02-28T14:47:36.247449356+01:00"
