@@ -21,7 +21,7 @@ Kubernetes: `>=1.27.7`
 
 ## Required environment variables for application usage
 
-Refer to documentation on the [OMC repository](https://github.com/Worth-NL/NotifyNL-OMC).
+Refer to documentation on the [OMC repository](https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/environment_variables.md).
 
 ## Values
 
