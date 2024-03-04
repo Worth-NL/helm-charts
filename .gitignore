@@ -506,3 +506,4 @@ FodyWeavers.xsd
 
 ### Misc ###
 *.values.yaml
+.envrc
