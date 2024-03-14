@@ -11,11 +11,11 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout ✅
         uses: actions/checkout@v4.1.1
         with:
           fetch-depth: 0
-      - name: Run helm-docs
+      - name: Helm docs 🤖
         uses: losisin/helm-docs-github-action@v1.2.1
         with:
           git-push: true
@@ -29,17 +29,17 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout ✅
         uses: actions/checkout@v4.1.1
         with:
           fetch-depth: 0
-      - name: Configure Git
+      - name: Configure Git 🧰
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"      
-      - name: Install Helm
+      - name: Install Helm ⎈
         uses: azure/setup-helm@v4
-      - name: Run chart-releaser
+      - name: Chart releaser 🤖
         uses: helm/chart-releaser-action@v1.6.0
         with:
           charts_dir: "./"
@@ -48,3 +48,10 @@ jobs:
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           CR_PACKAGE_PATH: .deploy
+      - name: Merge to gh-pages 📖
+        uses: devmasx/merge-branch@1.4.0
+        with:
+          type: now
+          from_branch: main
+          target_branch: gh-pages
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
