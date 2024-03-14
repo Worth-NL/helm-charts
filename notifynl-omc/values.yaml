@@ -346,6 +346,8 @@ affinity: {}
 ##  - name: TEST_VAR
 ##    value: test
 ##
+## OMC specific reference: https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/environment_variables.md
+##
 env:
   - name: ASPNETCORE_ENVIRONMENT
     value: "Development"
@@ -360,6 +362,8 @@ env:
 ##       name: special-config
 ##   - secretRef:ƒ
 ##       name: '{{ include "app.fullname" . }}-env'
+##
+## OMC specific reference: https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/environment_variables.md
 ##
 envFrom: []
 
