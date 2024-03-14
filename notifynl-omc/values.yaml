@@ -11,7 +11,7 @@
 image:
   registry: "docker.io"
   repository: "worthnl/notifynl-omc"
-  tag: "1.6.0"
+  tag: "1.6.0-patch.2"
   fullImage: [] # use this from pipeline, includes registry, repo and tag
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -156,9 +156,6 @@ containerPorts:
   - name: http
     containerPort: 5270
     protocol: TCP
-  - name: https
-    containerPort: 7042
-    protocol: TCP
 
 ## Application service parameters
 ##
@@ -264,14 +261,13 @@ ingress:
 ##  choice for the user. This also increases chances charts run on environments with little
 ##  resources, such as Minikube. If you do want to specify resources, uncomment the following
 ##  lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-##
 resources:
-  limits:
-    cpu: 1
-    memory: 2Gi
   requests:
+    cpu: 250m
+    memory: 128Mi
+  limits:
     cpu: 500m
-    memory: 1Gi
+    memory: 512Mi
 
 ## Autoscaling configuration
 ##
@@ -350,7 +346,11 @@ affinity: {}
 ##  - name: TEST_VAR
 ##    value: test
 ##
-env: []
+env:
+  - name: ASPNETCORE_ENVIRONMENT
+    value: "Development"
+  - name: ASPNETCORE_URLS
+    value: "http://*:5270"
 
 ## Array of sources to populate environment variables in the container from
 ## Ref: https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#envfromsource-v1-core
