@@ -346,7 +346,7 @@ affinity: {}
 ##  - name: TEST_VAR
 ##    value: test
 ##
-## OMC specific reference: https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/environment_variables.md
+## OMC specific reference: https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/OMC%20-%20Documentation.md
 ##
 env:
   - name: ASPNETCORE_ENVIRONMENT
