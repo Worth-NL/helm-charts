@@ -12,4 +12,4 @@ helm repo add notifynl https://worth-nl.github.io/helm-charts
 ## Charts
 
 - [OMC](notifynl-omc/)
-  - [Required environment variables](https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/environment_variables.md)
+  - [Documentation](https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/OMC%20-%20Documentation.md)
