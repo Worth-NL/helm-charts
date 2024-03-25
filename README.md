@@ -14,3 +14,7 @@ helm repo add notifynl https://worth-nl.github.io/helm-charts
 
 - [OMC](notifynl-omc/)
   - [Documentation](https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/OMC%20-%20Documentation.md)
+
+```
+helm install omc notifynl/notifynl-omc
+```
