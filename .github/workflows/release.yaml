@@ -39,6 +39,11 @@ jobs:
           git config user.email "${{ github.actor }}@users.noreply.github.com"      
       - name: Install Helm ⎈
         uses: azure/setup-helm@v4
+      - name: Add dependency repos
+        run: |
+          helm repo add denhaag https://gemeente-denhaag.github.io/helm-charts/
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo update
       - name: Chart releaser 🤖
         uses: helm/chart-releaser-action@v1.6.0
         with:
