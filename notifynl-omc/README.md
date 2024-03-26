@@ -1,6 +1,6 @@
 # notifynl-omc
 
-![Version: 0.2.7-beta](https://img.shields.io/badge/Version-0.2.7--beta-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.4](https://img.shields.io/badge/AppVersion-1.6.4-informational?style=flat-square)
+![Version: 0.2.8-beta](https://img.shields.io/badge/Version-0.2.8--beta-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.4](https://img.shields.io/badge/AppVersion-1.6.4-informational?style=flat-square)
 
 Chart to deploy the NotifyNL OMC application.
 
@@ -40,9 +40,11 @@ Kubernetes: `>=1.26.6`
 | dnsPolicy | string | `"ClusterFirst"` |  |
 | envFrom | list | `[]` |  |
 | env[0].name | string | `"ASPNETCORE_ENVIRONMENT"` |  |
-| env[0].value | string | `"Development"` |  |
+| env[0].value | string | `"Production"` |  |
 | env[1].name | string | `"ASPNETCORE_URLS"` |  |
 | env[1].value | string | `"http://*:5270"` |  |
+| env[2].name | string | `"COMPlus_EnableDiagnostics"` |  |
+| env[2].value | string | `"0"` |  |
 | hostAliases | list | `[]` |  |
 | hostNetwork | bool | `false` |  |
 | image.fullImage | list | `[]` |  |
