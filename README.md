@@ -18,6 +18,17 @@ helm repo add notifynl https://worth-nl.github.io/helm-charts
 
 ⚠️ Some environment variables are required for a valid configuration, see above documentation for information on these variables.
 
+⚠️ The following environment variables are also _always_ required:
+
+```
+  - name: ASPNETCORE_ENVIRONMENT
+    value: "Production"
+  - name: ASPNETCORE_URLS
+    value: "http://*:5270"
+  - name: COMPlus_EnableDiagnostics
+    value: "0"
+```
+
 ```
 helm install omc notifynl/notifynl-omc -f my.values.yaml
 ```

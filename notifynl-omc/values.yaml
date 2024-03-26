@@ -350,9 +350,11 @@ affinity: {}
 ##
 env:
   - name: ASPNETCORE_ENVIRONMENT
-    value: "Development"
+    value: "Production"
   - name: ASPNETCORE_URLS
     value: "http://*:5270"
+  - name: COMPlus_EnableDiagnostics
+    value: "0"
 
 ## Array of sources to populate environment variables in the container from
 ## Ref: https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#envfromsource-v1-core
