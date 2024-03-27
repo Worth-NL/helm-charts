@@ -51,10 +51,3 @@ jobs:
           skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Merge to gh-pages 📖
-        uses: devmasx/merge-branch@1.4.0
-        with:
-          type: now
-          from_branch: main
-          target_branch: gh-pages
-          github_token: "${{ secrets.GITHUB_TOKEN }}"
