@@ -11,7 +11,7 @@
 image:
   registry: "docker.io"
   repository: "worthnl/notifynl-omc"
-  tag: "1.6.4"
+  tag: "1.6.5"
   fullImage: [] # use this from pipeline, includes registry, repo and tag
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -347,12 +347,23 @@ affinity: {}
 ##    value: test
 ##
 ## OMC specific reference: https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/OMC%20-%20Documentation.md
-##
+## ! The following vars are mandatory
 env:
+  ## Can be set to "Development" if you want debug logs from OMC
   - name: ASPNETCORE_ENVIRONMENT
     value: "Production"
+  ## This defines the port that the application will expose itself on, if this
+  ## is changed, then containerports[0].port must also be changed
+  ##
+  ## containerPorts:
+  ##   - name: http
+  ##     containerPort: 5270
+  ##     protocol: TCP
   - name: ASPNETCORE_URLS
     value: "http://*:5270"
+  ## If this is not present or has a different value then the application will
+  ## not have enough memory and fail with a CoreCLR error. If required, please
+  ## adjust requests and limits accordingly
   - name: COMPlus_EnableDiagnostics
     value: "0"
 
