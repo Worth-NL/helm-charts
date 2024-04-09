@@ -51,7 +51,7 @@ Kubernetes: `>=1.26.6`
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"docker.io"` |  |
 | image.repository | string | `"worthnl/notifynl-omc"` |  |
-| image.tag | string | `"1.6.5.2"` |  |
+| image.tag | string | `"1.6.5.3"` |  |
 | ingress.annotations."nginx.ingress.kubernetes.io/force-ssl-redirect" | string | `"true"` |  |
 | ingress.annotations."nginx.ingress.kubernetes.io/use-regex" | string | `"true"` |  |
 | ingress.apiVersion | string | `nil` |  |
