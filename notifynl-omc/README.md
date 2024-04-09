@@ -1,6 +1,6 @@
 # notifynl-omc
 
-![Version: 0.2.10-beta](https://img.shields.io/badge/Version-0.2.10--beta-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.5.2](https://img.shields.io/badge/AppVersion-1.6.5.2-informational?style=flat-square)
+![Version: 0.2.12-beta](https://img.shields.io/badge/Version-0.2.12--beta-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.6.5.3](https://img.shields.io/badge/AppVersion-1.6.5.3-informational?style=flat-square)
 
 Chart to deploy the NotifyNL OMC application.
 
