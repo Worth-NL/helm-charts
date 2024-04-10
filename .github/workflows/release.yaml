@@ -52,7 +52,7 @@ jobs:
         env:
           GPG_KEYRING_BASE64: "${{ secrets.GPG_KEYRING_BASE64 }}" #Referring secrets of github above
           GPG_PASSPHRASE: "${{ secrets.GPG_PASSPHRASE }}" 
-      - name: Add dependency repos
+      - name: Add dependency repos 🔗
         run: |
           helm repo add denhaag https://gemeente-denhaag.github.io/helm-charts/
           helm repo add bitnami https://charts.bitnami.com/bitnami
