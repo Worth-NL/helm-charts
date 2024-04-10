@@ -39,6 +39,19 @@ jobs:
           git config user.email "${{ github.actor }}@users.noreply.github.com"      
       - name: Install Helm ⎈
         uses: azure/setup-helm@v4
+      - name: Prepare GPG 🔒
+        run: |
+          gpg_dir=.cr-gpg
+          mkdir "$gpg_dir"
+          keyring="$gpg_dir/secring.gpg"
+          base64 -d <<< "$GPG_KEYRING_BASE64" > "$keyring"
+          passphrase_file="$gpg_dir/passphrase"
+          echo "$GPG_PASSPHRASE" > "$passphrase_file"
+          echo "CR_PASSPHRASE_FILE=$passphrase_file" >> "$GITHUB_ENV"
+          echo "CR_KEYRING=$keyring" >> "$GITHUB_ENV"
+        env:
+          GPG_KEYRING_BASE64: "${{ secrets.GPG_KEYRING_BASE64 }}" #Referring secrets of github above
+          GPG_PASSPHRASE: "${{ secrets.GPG_PASSPHRASE }}" 
       - name: Add dependency repos
         run: |
           helm repo add denhaag https://gemeente-denhaag.github.io/helm-charts/
@@ -51,3 +64,5 @@ jobs:
           skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_KEY: "${{ secrets.CR_KEY }}"
+          CR_SIGN: true
