@@ -23,5 +23,5 @@ annotations:
       url: "https://github.com/Worth-NL/NotifyNL-OMC"
 dependencies:
   - name: dh-lib
-    version: 0.1.5
+    version: 0.1.11
     repository: https://gemeente-denhaag.github.io/helm-charts/
