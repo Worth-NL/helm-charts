@@ -1,6 +1,6 @@
 dependencies:
 - name: dh-lib
   repository: https://gemeente-denhaag.github.io/helm-charts/
-  version: 0.1.5
-digest: sha256:b74be7cce500bf55a5ed9792d0a58e327d8ac7323490d3d0962bb25e7d93dc5a
-generated: "2024-02-27T21:01:31.427906881+01:00"
+  version: 0.1.11
+digest: sha256:ad257ca16d17056d2bebb9f3377581f2691170009e51e7b7b148e72e6154beb3
+generated: "2024-07-09T13:06:33.444401608+02:00"
