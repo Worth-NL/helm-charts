@@ -9,6 +9,37 @@ entries:
         - name: "App source"
           url: "https://github.com/Worth-NL/NotifyNL-OMC"
     apiVersion: v2
+    appVersion: 1.9.0
+    created: "2024-10-01T12:31:56.113727482Z"
+    dependencies:
+    - name: dh-lib
+      repository: https://gemeente-denhaag.github.io/helm-charts/
+      version: 0.1.11
+    description: Chart to deploy the NotifyNL OMC application.
+    digest: c6518d0025cedd7360751b25bb957c389c6b18c1c84b26fb254d37b77603ffec
+    icon: https://avatars.githubusercontent.com/u/138866112?s=200&v=4
+    keywords:
+    - notifynl
+    - omc
+    kubeVersion: '>=1.26.6'
+    maintainers:
+    - email: pgaetani@worth.systems
+      name: Pier-Angelo Gaetani
+    - email: tkrystyan@worth.systems
+      name: Thomas M. Krystyan
+    name: notifynl-omc
+    type: application
+    urls:
+    - https://github.com/Worth-NL/helm-charts/releases/download/notifynl-omc-0.3.28-beta/notifynl-omc-0.3.28-beta.tgz
+    version: 0.3.28-beta
+  - annotations:
+      artifacthub.io/license: EUPL-1.2
+      artifacthub.io/links: |
+        - name: "Chart source"
+          url: "https://github.com/Worth-NL/helm-charts"
+        - name: "App source"
+          url: "https://github.com/Worth-NL/NotifyNL-OMC"
+    apiVersion: v2
     appVersion: 1.8.18
     created: "2024-09-19T15:32:07.304308717Z"
     dependencies:
@@ -971,13 +1002,13 @@ entries:
           url: "https://github.com/Worth-NL/NotifyNL-OMC"
     apiVersion: v2
     appVersion: 1.6.5.2
-    created: "2024-04-04T10:16:04.633878076Z"
+    created: "2024-04-09T09:39:28.909515331Z"
     dependencies:
     - name: dh-lib
       repository: https://gemeente-denhaag.github.io/helm-charts/
       version: 0.1.5
     description: Chart to deploy the NotifyNL OMC application.
-    digest: 393964162202eb448234a97d63e3980a3f098a0ecdc14571cf9ac13e3e287ffa
+    digest: 2ef2f868d9e79b8de0666fdec8992066760f113920a65bcd48dc25199f73c05a
     icon: https://avatars.githubusercontent.com/u/138866112?s=200&v=4
     keywords:
     - notifynl
@@ -1002,13 +1033,13 @@ entries:
           url: "https://github.com/Worth-NL/NotifyNL-OMC"
     apiVersion: v2
     appVersion: 1.6.5.2
-    created: "2024-04-09T09:39:28.909515331Z"
+    created: "2024-04-04T10:16:04.633878076Z"
     dependencies:
     - name: dh-lib
       repository: https://gemeente-denhaag.github.io/helm-charts/
       version: 0.1.5
     description: Chart to deploy the NotifyNL OMC application.
-    digest: 2ef2f868d9e79b8de0666fdec8992066760f113920a65bcd48dc25199f73c05a
+    digest: 393964162202eb448234a97d63e3980a3f098a0ecdc14571cf9ac13e3e287ffa
     icon: https://avatars.githubusercontent.com/u/138866112?s=200&v=4
     keywords:
     - notifynl
@@ -1303,4 +1334,4 @@ entries:
     urls:
     - https://github.com/Worth-NL/helm-charts/releases/download/notifynl-omc-0.2.0-alpha/notifynl-omc-0.2.0-alpha.tgz
     version: 0.2.0-alpha
-generated: "2024-09-19T15:32:07.304957859Z"
+generated: "2024-10-01T12:31:56.114317048Z"
