@@ -11,7 +11,7 @@
 image:
   registry: "docker.io"
   repository: "worthnl/notifynl-omc"
-  tag: "1.11.2"
+  tag: "1.11.3"
   fullImage: [] # use this from pipeline, includes registry, repo and tag
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
