@@ -31,7 +31,7 @@ name: "notifynl-omc"
 
 ##
 ##
-command: ["dotnet", "NotifyNL.EventsHandler.dll"]
+command: ["dotnet", "OMC.EventsHandler.dll"]
 
 ## Specfies the required replicas
 ##
