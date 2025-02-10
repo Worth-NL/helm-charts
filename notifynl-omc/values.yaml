@@ -11,7 +11,7 @@
 image:
   registry: "docker.io"
   repository: "worthnl/notifynl-omc"
-  tag: "1.13.1"
+  tag: "1.14.5"
   fullImage: [] # use this from pipeline, includes registry, repo and tag
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -24,23 +24,18 @@ image:
   ##
   # pullSecrets:
   #   - myRegistryKeySecretName
-
 ## Specifies the application name (required to be set)
 ##
 name: "notifynl-omc"
-
 ##
 ##
 command: ["dotnet", "OMC.EventsHandler.dll"]
-
 ## Specfies the required replicas
 ##
 replicaCount: 1
-
 ## Specifies the application resource kind
 ##
 appKind: Deployment
-
 ## String to partially override common.names.fullname template (will maintain the release name)
 ##
 # nameOverride:
@@ -53,16 +48,13 @@ appKind: Deployment
 ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
 ##
 hostAliases: []
-
 ## Controls whether the pod may use the node network namespace.
 ## ref: https://kubernetes.io/docs/concepts/security/pod-security-policy/#host-namespaces
 hostNetwork: false
-
 ## Controls whether the container automatically mounts the ServiceAccount's API credentials
 ## In the pod/v1 this defaults to true, so also in this helm chart. recommended: false
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#opt-out-of-api-credential-automounting
 automountServiceAccountToken: false
-
 serviceAccount:
   ## Specifies whether a service account should be created
   ##
@@ -78,25 +70,20 @@ serviceAccount:
   ## In the serviceaccount/v1 this defaults to true, so also in this helm chart. recommended: false
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#opt-out-of-api-credential-automounting
   automountServiceAccountToken: true
-
 ## Add labels to all the deployed resources
 ##
 commonLabels: {}
-
 ## Add annotations to all the deployed resources
 ##
 commonAnnotations: {}
-
 ## Pod annotations
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 ##
 podAnnotations: {}
-
 ## Extra labels to add to Pod
 ##
 podLabels:
   public-access: allow
-
 ## Add init containers to the pod
 ##
 initContainers: []
@@ -112,13 +99,11 @@ initContainers: []
 ## ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass
 ##
 priorityClassName: ""
-
 ## Optionally, change this to ClusterFirstWithHostNet in case you have 'hostNetwork: true'.
 ## By default, while using host network, name resolution uses the host's DNS. If you wish nginx-controller
 ## to keep resolving names inside the k8s network, use ClusterFirstWithHostNet.
 ##
 dnsPolicy: ClusterFirst
-
 ## Pod securityContext
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
 ##
@@ -128,7 +113,6 @@ podSecurityContext:
   runAsUser: 1000
   runAsGroup: 1000
   runAsNonRoot: true
-
 ## Container security context
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
 ##
@@ -145,7 +129,6 @@ containerSecurityContext:
   enabled: true
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
-
 ## Application container ports definitions (for use with service.ports)
 ##
 ## containerPorts:
@@ -156,7 +139,6 @@ containerPorts:
   - name: http
     containerPort: 5270
     protocol: TCP
-
 ## Application service parameters
 ##
 service:
@@ -172,7 +154,6 @@ service:
   # targetPort:
   port: 5270
   targetPort: 5270
-
 ## Set up update strategy for Kibana installation. Set to Recreate if you use persistent volume that cannot be mounted by more than one pods to makesure the pods are destroyed first.
 ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
 ## Example:
@@ -183,7 +164,6 @@ service:
 #    maxUnavailable: 25%
 updateStrategy:
   type: RollingUpdate
-
 ## Configure the ingress resource that allows you to access the
 ## app installation. Set up the URL
 ## ref: http://kubernetes.io/docs/user-guide/ingress/
@@ -193,26 +173,20 @@ ingress:
   ##
   enabled: false
   hostname: ""
-
   ## Set this to true in order to add the corresponding annotations for cert-manager
   ##
   certManager: false
-
   ## Ingress Path type
   ##
   pathType: Prefix
-
   ingressClassName: nginx
-
   ## Override API Version (automatically detected if not set)
   ##
   apiVersion:
-
   # ## The Path to Nginx. You may need to set this to '/*' in order to use this
   # ## with ALB ingress controllers.
   # ##
   path: /
-
   # ## Ingress annotations done as key:value pairs
   # ## For a full list of possible ingress annotations, please see
   # ## ref: https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/annotations.md
@@ -222,13 +196,11 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
-
   ## Enable TLS configuration for the hostname defined at ingress.hostname parameter
   ## TLS certificates will be retrieved from a TLS secret with name: {{- printf "%s-tls" .Values.ingress.hostname }}
   ## You can use the ingress.secrets parameter to create this TLS secret or relay on cert-manager to create it
   ##
   tls: true
-
   ## Any additional arbitrary paths that may need to be added to the ingress under the main host.
   ## For example: The ALB ingress controller requires a special rule for handling SSL redirection.
   ## extraPaths:
@@ -238,7 +210,6 @@ ingress:
   ##     servicePort: use-annotation
   ##
   extraPaths: []
-
   ## Adds location and server snippets annotations for ingress-nginx
   ## Ref: https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#configuration-snippet
   ## Ref: https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet
@@ -256,7 +227,6 @@ ingress:
   nginx:
     configurationSnippet:
     serverSnippet:
-
 extraIngress:
   # -- Configure a second ingress resource that allows you to access the app installation.<br>
   # Set to true to enable ingress.<br>
@@ -350,7 +320,6 @@ extraIngress:
   # </details>
   # ref: <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/#tls">[link]</a>
   extraTls: []
-
 ##  We usually recommend not to specify default resources and to leave this as a conscious
 ##  choice for the user. This also increases chances charts run on environments with little
 ##  resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -362,7 +331,6 @@ resources:
   limits:
     cpu: 500m
     memory: 512Mi
-
 ## Autoscaling configuration
 ##
 ## Example:
@@ -389,23 +357,19 @@ resources:
 ##
 autoscaling:
   enabled: false
-
 nodeSelector: {}
 tolerations: []
 topologySpreadConstraints: []
-
 ## Pod affinity preset
 ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
 ## Allowed values: soft, hard
 ##
 podAffinityPreset:
-
 ## Pod anti-affinity preset
 ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
 ## Allowed values: soft, hard
 ##
 podAntiAffinityPreset:
-
 ## Node affinity preset
 ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
 ## Allowed values: soft, hard
@@ -427,13 +391,11 @@ nodeAffinityPreset:
   ##   - e2e-az2
   ##
   values: []
-
 ## Affinity for pod assignment
 ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
 ## Note: podAffinityPreset, podAntiAffinityPreset, and  nodeAffinityPreset will be ignored when it's set
 ##
 affinity: {}
-
 ## An array to add env vars
 ## For example:
 ## env:
@@ -460,7 +422,6 @@ env:
   ## adjust requests and limits accordingly
   - name: COMPlus_EnableDiagnostics
     value: "0"
-
 ## Array of sources to populate environment variables in the container from
 ## Ref: https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#envfromsource-v1-core
 ##
@@ -473,7 +434,6 @@ env:
 ## OMC specific reference: https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/environment_variables.md
 ##
 envFrom: []
-
 ## Enable persistence using Persistent Volume Claims
 ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
 ##
@@ -495,7 +455,6 @@ persistence:
   accessMode: ReadWriteOnce
   size: 1Gi
   mountPath: /data
-
 ## Configure options for liveness and readiness probes
 ## Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes)
 ## Note: probes are disabled by default and have no checks defined
@@ -527,7 +486,6 @@ startupProbe:
   timeoutSeconds: 5
   failureThreshold: 15
   successThreshold: 1
-
 ## PodDisruptionBudget configuration
 ##
 podDisruptionBudget:
