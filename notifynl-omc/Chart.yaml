@@ -1,7 +1,7 @@
 apiVersion: v2
 name: notifynl-omc
-version: "0.4.2"
-appVersion: "1.14.5"
+version: "0.4.3"
+appVersion: "1.14.6"
 kubeVersion: ">=1.26.6"
 description: "Chart to deploy the NotifyNL OMC application."
 icon: "https://avatars.githubusercontent.com/u/138866112?s=200&v=4"
