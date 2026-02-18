@@ -14,6 +14,7 @@ type: application
 keywords:
   - "notifynl"
   - "omc"
+  - "dh-lib"
 annotations:
   artifacthub.io/license: "EUPL-1.2"
   artifacthub.io/links: |
