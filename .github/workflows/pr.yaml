@@ -1,5 +1,4 @@
-name: Merge
-
+name: PR
 
 on:
   pull_request:
@@ -20,8 +19,6 @@ jobs:
     steps:
       - name: Checkout ✅
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Helm docs 🤖
         uses: losisin/helm-docs-github-action@v1
