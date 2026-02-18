@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "labels.full" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "labels.match" . | nindent 6 }}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        {{- include "labels.full" . | nindent 8 }}
+    spec:
+      containers:
+      - name: omc
+        image: docker.io/worthnl/notifynl-omc:{{ .Chart.AppVersion }}
+        command:
+        - dotnet
+        - OMC.EventsHandler.dll
+        ports:
+        - name: app
+          containerPort: {{ .Values.app.port }}
+          protocol: TCP
+        envFrom:
+          - configMapRef:
+              name: {{ .Release.Name }}-config
+              optional: false
+          - secretRef:
+              name: {{ .Release.Name }}-secret
+              optional: false
+          {{- range $i := .Values.app.extraEnvConfigMaps }}
+          - configMapRef:
+              name: {{ $i }}
+              optional: false
+          {{- end }}
+          {{- range $i := .Values.app.extraEnvSecrets }}
+          - secretRef:
+              name: {{ $i }}
+              optional: false
+          {{- end }}
+        resources:
+          requests:
+            cpu: {{ .Values.app.resources.requests.cpu }}
+            memory: {{ .Values.app.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.app.resources.limits.cpu }}
+            memory: {{ .Values.app.resources.limits.memory }}
+        livenessProbe:
+          tcpSocket:
+            port: {{ .Values.app.port }}
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+          periodSeconds: 30
+          successThreshold: 1
+          failureThreshold: 2
+        readinessProbe:
+          tcpSocket:
+            port: {{ .Values.app.port }}
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+          periodSeconds: 30
+          successThreshold: 1
+          failureThreshold: 6
+        imagePullPolicy: IfNotPresent
+      restartPolicy: Always

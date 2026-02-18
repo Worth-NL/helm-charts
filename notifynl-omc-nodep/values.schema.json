@@ -1,0 +1,475 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": true,
+
+  "definitions": {
+    "uuid": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+    },
+    "uuidList": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}(\\s*,\\s*[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})*$"
+    },
+    "uuidListOrStar": {
+      "type": "string",
+      "pattern": "^(\\*|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}(\\s*,\\s*[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12})*)$",
+      "default": "*"
+    },
+    "notifyApiKey": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_]+-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+    },
+    "stringOrStar": {
+      "type": "string",
+      "default": "*"
+    }
+  },
+
+  "properties": {
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "hostname": {
+          "type": ["string", "null"]
+        },
+        "ingressClass": {
+          "type": ["string", "null"]
+        },
+        "tls": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": false
+            },
+            "secret": {
+              "type": ["string", "null"]
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "enabled": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "hostname": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": ["hostname"]
+          }
+        }
+      ]
+    },
+
+    "config": {
+      "type": "object",
+      "properties": {
+
+        "aspnetcore": {
+          "type": "object",
+          "properties": {
+            "environment": {
+              "type": "string",
+              "default": "Development",
+              "enum": ["Development", "Test", "Production"]
+            }
+          },
+          "required": ["environment"]
+        },
+
+        "sentry": {
+          "type": "object",
+          "properties": {
+            "dsn": {
+              "type": "string",
+              "format": "uri"
+            },
+            "environment": {
+              "type": ["string", "null"]
+            }
+          }
+        },
+
+        "notify": {
+          "type": "object",
+          "properties": {
+            "api": {
+              "type": "object",
+              "properties": {
+                "baseUrl": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "key": {
+                  "$ref": "#/definitions/notifyApiKey"
+                }
+              },
+              "required": ["baseUrl", "key"]
+            }
+          }
+        },
+
+        "omc": {
+          "type": "object",
+          "properties": {
+            "actor": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/definitions/uuid"
+                }
+              }
+            },
+            "auth": {
+              "type": "object",
+              "properties": {
+                "jwt": {
+                  "type": "object",
+                  "properties": {
+                    "secret": {
+                      "type": "string",
+                      "minLength": 64
+                    },
+                    "issuer": {
+                      "type": ["string", "null"]
+                    },
+                    "audience": {
+                      "type": ["string", "null"]
+                    },
+                    "expiresInMin": {
+                      "type": "integer",
+                      "minimum": 60,
+                      "maximum": 65535
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "userName": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "secret",
+                    "issuer",
+                    "audience",
+                    "expiresInMin",
+                    "userId",
+                    "userName"
+                  ]
+                }
+              }
+            },
+            "feature": {
+              "type": "object",
+              "properties": {
+                "workflow": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 2,
+                      "default": 2
+                    }
+                  },
+                  "required": ["version"]
+                }
+              }
+            }
+          }
+        },
+
+        "zgw": {
+          "type": "object",
+          "properties": {
+
+            "auth": {
+              "type": "object",
+              "properties": {
+                "jwt": {
+                  "type": "object",
+                  "properties": {
+                    "secret": { 
+                      "type": "string"
+                    },
+                    "issuer": { 
+                      "type": "string"
+                    },
+                    "audience": { 
+                      "type": ["string", "null"]
+                    },
+                    "expiresInMin": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 65535
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "userName": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "key": {
+                  "type": "object",
+                  "properties": {
+                    "openklant": {
+                      "type": "string"
+                    },
+                    "objecten": {
+                      "type": ["string", "null"]
+                    },
+                    "objectTypen": {
+                      "type": ["string", "null"]
+                    }
+                  }
+                }
+              }
+            },
+
+            "endpoint": {
+              "type": "object",
+              "properties": {
+                "openNotificaties": { 
+                  "type": "string", 
+                  "format": "uri" 
+                },
+                "openZaak": { 
+                  "type": "string", 
+                  "format": "uri" 
+                },
+                "openKlant": { 
+                  "type": "string", 
+                  "format": "uri" 
+                },
+                "besluiten": { 
+                  "type": "string", 
+                  "format": "uri" 
+                },
+                "objecten": { 
+                  "type": "string", 
+                  "format": "uri" 
+                },
+                "objectTypen": { 
+                  "type": "string", 
+                  "format": "uri" 
+                },
+                "contactMomenten": { 
+                  "type": "string", 
+                  "format": "uri" 
+                }
+              }
+            },
+
+            "variable": {
+              "type": "object",
+              "properties": {
+                "objectType": {
+                  "type": "object",
+                  "properties": {
+                    "taskObjectType": {
+                      "type": "object",
+                      "properties": {
+                        "uuid": {
+                          "$ref": "#/definitions/uuid"
+                        }
+                      }
+                    },
+                    "messageObjectType": {
+                      "type": "object",
+                      "properties": {
+                        "uuid": {
+                          "$ref": "#/definitions/uuid"
+                        },
+                        "version": {
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "decisionInfoObjectType": {
+                      "type": "object",
+                      "properties": {
+                        "uuids": {
+                          "$ref": "#/definitions/uuidList"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+
+            "whitelist": {
+              "type": "object",
+              "properties": {
+                "zaakCreate": {
+                  "type": "object",
+                  "properties": {
+                    "ids": { 
+                      "$ref": "#/definitions/stringOrStar"
+                    }
+                  }
+                },
+                "zaakUpdate": {
+                  "type": "object",
+                  "properties": {
+                    "ids": { 
+                      "$ref": "#/definitions/stringOrStar"
+                    }
+                  }
+                },
+                "zaakClose": {
+                  "type": "object",
+                  "properties": {
+                    "ids": { 
+                      "$ref": "#/definitions/stringOrStar"
+                    }
+                  }
+                },
+                "taskAssigned": {
+                  "type": "object",
+                  "properties": {
+                    "ids": { 
+                      "$ref": "#/definitions/stringOrStar"
+                    }
+                  }
+                },
+                "decisionMade": {
+                  "type": "object",
+                  "properties": {
+                    "ids": { 
+                      "$ref": "#/definitions/stringOrStar"
+                    }
+                  }
+                },
+                "message": {
+                  "type": "object",
+                  "properties": {
+                    "allowed": { 
+                      "type": "boolean",
+                      "default": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "kto": {
+          "type": "object",
+          "properties": {
+            "auth": {
+              "type": "object",
+              "properties": {
+                "jwt": {
+                  "type": "object",
+                  "properties": {
+                    "clientId": { 
+                      "type": ["string", "null"],
+                      "default": "-"
+                    },
+                    "secret": { 
+                      "type": ["string", "null"],
+                      "default": "-"
+                    },
+                    "scope": { 
+                      "type": ["string", "null"],
+                      "default": "-"
+                    },
+                    "issuer": { 
+                      "type": ["string", "null"],
+                      "default": "-"
+                    }
+                  }
+                }
+              }
+            },
+            "url": {
+              "type": ["string", "null"],
+              "format": "uri",
+              "default": "-"
+            },
+            "caseTypeSettings": {
+              "type": ["object", "string", "null"],
+              "default": "-"
+            }
+          }
+        },
+
+        "keycloak": {
+          "type": "object",
+          "properties": {
+            "authServerUrl": { 
+              "type": ["string", "null"],
+              "format": "uri"
+            },
+            "clientId": { 
+              "type": ["string", "null"]
+            },
+            "clientSecret": { 
+              "type": ["string", "null"]
+            },
+            "tokenExchangeAudience": { 
+              "type": ["string", "null"]
+            }
+          }
+        },
+
+        "brp": {
+          "type": "object",
+          "properties": {
+            "baseUrl": { 
+              "type": ["string", "null"], 
+              "format": "uri" 
+            },
+            "clientCert": {
+              "type": "object",
+              "properties": {
+                "pem": {
+                  "type": "object",
+                  "properties": {
+                    "path": { 
+                      "type": ["string", "null"]
+                    }
+                  }
+                }
+              }
+            },
+            "clientKey": {
+              "type": "object",
+              "properties": {
+                "pem": {
+                  "type": "object",
+                  "properties": {
+                    "path": { 
+                      "type": ["string", "null"] 
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+}

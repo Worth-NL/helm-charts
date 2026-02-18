@@ -1,0 +1,32 @@
+name: PR
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # Don't want the tests running in parallel
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout ✅
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Helm docs 🤖
+        uses: losisin/helm-docs-github-action@v1
+        with:
+          git-push: true
+          git-push-user-name: "${{ github.actor }}"
+          git-push-user-email: "${{ github.actor }}@users.noreply.github.com"
+          git-commit-message: "🧹 update chart documentation"
