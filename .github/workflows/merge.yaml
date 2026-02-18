@@ -1,9 +1,14 @@
-name: Release charts
+name: Merge
 
 on:
   push:
     branches:
       - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # Don't want the tests running in parallel
+  cancel-in-progress: true
 
 jobs:
   docs:
