@@ -508,3 +508,4 @@ FodyWeavers.xsd
 *.values.yaml
 .envrc
 .deploy/
+values/
