@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "labels.full" . | nindent 4 }}
 data:
-  COMPlus_EnableDiagnostics: 0
+  COMPlus_EnableDiagnostics: "0"
   ASPNETCORE_URLS: http://*:{{ default 5270 .Values.app.port }}
   ASPNETCORE_ENVIRONMENT: {{ default "Development" .Values.config.aspnetcore.environment }}
   {{- if .Values.config.sentry.environment }}
@@ -16,7 +16,7 @@ data:
   OMC_ACTOR_ID: {{ default uuidv4 .Values.config.omc.actor.id }}
   OMC_AUTH_JWT_USERID: {{ default ("-" | quote) .Values.config.omc.auth.jwt.userId}}
   OMC_AUTH_JWT_USERNAME: {{ default ("-" | quote) .Values.config.omc.auth.jwt.userName }}
-  OMC_FEATURE_WORKFLOW_VERSION: {{ default 2 .Values.config.omc.feature.workflow.version }}
+  OMC_FEATURE_WORKFLOW_VERSION: {{ default 2 .Values.config.omc.feature.workflow.version | quote }}
   KTO_URL: {{ default ("-" | quote) .Values.config.kto.url }}
   KTO_CASETYPESETTINGS: {{ default ("-") .Values.config.kto.caseTypeSettings | toJson }}
   ZGW_AUTH_JWT_USERID: {{ default ("-" | quote) .Values.config.zgw.auth.jwt.userId}}
@@ -33,7 +33,7 @@ data:
   ZGW_WHITELIST_ZAAKCLOSE_IDS: {{ .Values.config.zgw.whitelist.zaakClose.ids | quote }}
   ZGW_WHITELIST_TASKASSIGNED_IDS: {{ .Values.config.zgw.whitelist.taskAssigned.ids | quote }}
   ZGW_WHITELIST_DECISIONMADE_IDS: {{ .Values.config.zgw.whitelist.decisionMade.ids | quote }}
-  ZGW_WHITELIST_MESSAGE_ALLOWED: {{ .Values.config.zgw.whitelist.message.allowed }}
+  ZGW_WHITELIST_MESSAGE_ALLOWED: {{ .Values.config.zgw.whitelist.message.allowed | quote }}
   NOTIFY_API_BASEURL: {{ .Values.config.notify.api.baseUrl }}
   NOTIFY_TEMPLATEID_DECISIONMADE: {{ .Values.config.notify.templateId.decisionMade }}
   NOTIFY_TEMPLATEID_EMAIL_ZAAKCREATE: {{ .Values.config.notify.templateId.email.zaakCreate }}
