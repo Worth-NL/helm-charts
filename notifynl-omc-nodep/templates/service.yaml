@@ -9,7 +9,7 @@ spec:
   ports:
   - name: app
     protocol: TCP
-    port: 5270
+    port: {{ .Values.app.port }}
     targetPort: app
   selector:
     {{- include "labels.match" . | nindent 4 }}
