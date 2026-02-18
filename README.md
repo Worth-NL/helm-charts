@@ -14,10 +14,8 @@ helm repo add notifynl https://worth-nl.github.io/helm-charts
 
 ### [OMC](notifynl-omc/)
 
-- [Documentation](https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/OMC%20-%20Documentation.md)
-
-> [!WARNING]
-> Some environment variables are required for a valid configuration, see above documentation for information on these variables.
+> [!IMPORTANT]
+> Some environment variables are required for a valid configuration, see the [OMC documentation](https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/OMC%20-%20Documentation.md) for information on these variables.
 
 > [!WARNING]
 > The following environment variables are also _always_ required:
@@ -36,10 +34,8 @@ helm install omc notifynl/notifynl-omc -f my.values.yaml
 
 ### [OMC (no dependencies)](notifynl-omc-nodep)
 
-- [Documentation](https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/OMC%20-%20Documentation.md)
-
-> [!WARNING]
-> Some environment variables are required for a valid configuration, see above documentation for information on these variables.
+> [!IMPORTANT]
+> Some environment variables are required for a valid configuration, see the [OMC documentation](https://github.com/Worth-NL/NotifyNL-OMC/blob/main/Documentation/OMC%20-%20Documentation.md) for information on these variables.
 
 ```
 helm install omc notifynl/notifynl-omc-nodep -f my.values.yaml
