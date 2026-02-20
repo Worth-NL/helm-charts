@@ -1,6 +1,6 @@
 # notifynl-omc-nodep
 
-![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.17.18](https://img.shields.io/badge/AppVersion-1.17.18-informational?style=flat-square)
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.17.18](https://img.shields.io/badge/AppVersion-1.17.18-informational?style=flat-square)
 
 Chart to deploy the NotifyNL OMC application.
 
@@ -20,6 +20,7 @@ Kubernetes: `>=1.26.6`
 |-----|------|---------|-------------|
 | app.extraEnvConfigMaps | list | `[]` | List of k8s configMap resource names to be loaded as additional environment variables in deployment |
 | app.extraEnvSecrets | list | `[]` | List of k8s secret resource names to be loaded as additional environment variables in deployment |
+| app.overrides.tag | string | `nil` |  |
 | app.port | int | `5270` |  |
 | app.resources.limits.cpu | string | `"500m"` |  |
 | app.resources.limits.memory | string | `"512Mi"` |  |
