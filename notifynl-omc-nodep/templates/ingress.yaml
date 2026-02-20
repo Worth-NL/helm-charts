@@ -8,7 +8,9 @@ metadata:
     {{- include "labels.full" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
-    {{- toYaml . | nindent 4 }}
+    {{- range $key, $val := . }}
+      {{ $key }}: {{ $val | quote }}
+    {{- end }}
   {{- end }}
 spec:
   {{- with .Values.ingress.ingressClass }}

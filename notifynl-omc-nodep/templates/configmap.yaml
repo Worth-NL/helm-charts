@@ -16,6 +16,7 @@ data:
   OMC_ACTOR_ID: {{ default uuidv4 .Values.config.omc.actor.id }}
   OMC_AUTH_JWT_USERID: {{ default ("-" | quote) .Values.config.omc.auth.jwt.userId}}
   OMC_AUTH_JWT_USERNAME: {{ default ("-" | quote) .Values.config.omc.auth.jwt.userName }}
+  OMC_CONTEXT_PATH: {{ .Values.config.omc.context.path }}
   OMC_FEATURE_WORKFLOW_VERSION: {{ default 2 .Values.config.omc.feature.workflow.version | quote }}
   KTO_URL: {{ default ("-" | quote) .Values.config.kto.url }}
   KTO_CASETYPESETTINGS: {{ default ("-") .Values.config.kto.caseTypeSettings | toJson }}
@@ -40,7 +41,7 @@ data:
   NOTIFY_TEMPLATEID_EMAIL_ZAAKUPDATE: {{ .Values.config.notify.templateId.email.zaakUpdate }}
   NOTIFY_TEMPLATEID_EMAIL_ZAAKCLOSE: {{ .Values.config.notify.templateId.email.zaakClose }}
   NOTIFY_TEMPLATEID_EMAIL_TASKASSIGNED: {{ .Values.config.notify.templateId.email.taskAssigned }}
-  NOTIFY_TEMPLATEID_EMAIL_MESSAGE: {{ .Values.config.notify.templateId.email.message }}
+  NOTIFY_TEMPLATEID_EMAIL_MESSAGERECEIVED: {{ .Values.config.notify.templateId.email.messageReceived }}
   NOTIFY_TEMPLATEID_SMS_ZAAKCREATE: {{ .Values.config.notify.templateId.sms.zaakCreate }}
   NOTIFY_TEMPLATEID_SMS_ZAAKUPDATE: {{ .Values.config.notify.templateId.sms.zaakUpdate }}
   NOTIFY_TEMPLATEID_SMS_ZAAKCLOSE: {{ .Values.config.notify.templateId.sms.zaakClose }}
