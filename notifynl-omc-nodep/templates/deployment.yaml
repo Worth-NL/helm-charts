@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: omc
-        image: docker.io/worthnl/notifynl-omc:{{ .Chart.AppVersion }}
+        image: docker.io/worthnl/notifynl-omc:{{ default .Chart.AppVersion .Values.app.overrides.tag }}
         command:
         - dotnet
         - OMC.EventsHandler.dll

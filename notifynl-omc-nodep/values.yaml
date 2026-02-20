@@ -8,6 +8,8 @@ ingress:
   annotations: {}
 
 app:
+  overrides:
+    tag:
   port: 5270
   resources:
     requests:

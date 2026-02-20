@@ -6,7 +6,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 
 {{/* Define extra labels */}}
 {{- define "labels.extras" -}}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+app.kubernetes.io/version: {{ default .Chart.AppVersion .Values.app.overrides.tag | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
