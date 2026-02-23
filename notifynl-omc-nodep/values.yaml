@@ -63,7 +63,7 @@ config:
         messageReceived:
   omc:
     actor:
-      id: e03c92b4-78e1-4bbd-b872-a1f8b7f7abb8
+      id:
     auth:
       jwt:
         # -- For security reasons it should be at least 64 bytes long
