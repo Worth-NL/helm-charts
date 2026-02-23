@@ -231,7 +231,7 @@
                     },
                     "userName": {
                       "type": "string"
-                    }
+                    }                
                   }
                 },
                 "key": {
