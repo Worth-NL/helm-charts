@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-config
+  name: {{ .Release.Name }}-omc-config
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "labels.full" . | nindent 4 }}
