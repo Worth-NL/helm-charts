@@ -46,7 +46,7 @@ data:
   NOTIFY_TEMPLATEID_SMS_ZAAKUPDATE: {{ .Values.config.notify.templateId.sms.zaakUpdate }}
   NOTIFY_TEMPLATEID_SMS_ZAAKCLOSE: {{ .Values.config.notify.templateId.sms.zaakClose }}
   NOTIFY_TEMPLATEID_SMS_TASKASSIGNED: {{ .Values.config.notify.templateId.sms.taskAssigned }}
-  NOTIFY_TEMPLATEID_SMS_MESSAGE: {{ .Values.config.notify.templateId.sms.message }}
+  NOTIFY_TEMPLATEID_SMS_MESSAGERECEIVED: {{ .Values.config.notify.templateId.sms.messageReceived }}
   KEYCLOAK_AUTHSERVERURL: {{ .Values.config.keycloak.authServerUrl }}
   KEYCLOAK_TOKENEXCHANGEAUDIENCE: {{ .Values.config.keycloak.tokenExchangeAudience }}
   BRP_BASEURL: {{ .Values.config.brp.baseUrl }}
