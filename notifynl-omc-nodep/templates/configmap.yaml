@@ -1,52 +1,52 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-omc-config
+  name: {{ include "omc.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "labels.full" . | nindent 4 }}
 data:
   COMPlus_EnableDiagnostics: "0"
   ASPNETCORE_URLS: http://*:{{ default 5270 .Values.app.port }}
-  ASPNETCORE_ENVIRONMENT: {{ default "Development" .Values.config.aspnetcore.environment }}
-  {{- if .Values.config.sentry.environment }}
-  SENTRY_DSN: {{ .Values.config.sentry.dsn  }}
-  SENTRY_ENVIRONMENT: {{ .Values.config.sentry.environment }}
+  ASPNETCORE_ENVIRONMENT: {{ default "Production" .Values.settings.aspnetcore.environment }}
+  {{- if .Values.settings.sentry.environment }}
+  SENTRY_DSN: {{ .Values.settings.sentry.dsn }}
+  SENTRY_ENVIRONMENT: {{ .Values.settings.sentry.environment }}
   {{- end }}
-  OMC_ACTOR_ID: {{ default uuidv4 .Values.config.omc.actor.id }}
-  OMC_AUTH_JWT_USERID: {{ default ("-" | quote) .Values.config.omc.auth.jwt.userId}}
-  OMC_AUTH_JWT_USERNAME: {{ default ("-" | quote) .Values.config.omc.auth.jwt.userName }}
-  OMC_CONTEXT_PATH: {{ .Values.config.omc.context.path }}
-  OMC_FEATURE_WORKFLOW_VERSION: {{ default 2 .Values.config.omc.feature.workflow.version | quote }}
-  KTO_URL: {{ default ("-" | quote) .Values.config.kto.url }}
-  KTO_CASETYPESETTINGS: {{ default ("-") .Values.config.kto.caseTypeSettings | toJson }}
-  ZGW_AUTH_JWT_USERID: {{ default ("-" | quote) .Values.config.zgw.auth.jwt.userId}}
-  ZGW_AUTH_JWT_USERNAME: {{ default ("-" | quote) .Values.config.zgw.auth.jwt.userName}}
-  ZGW_ENDPOINT_OPENNOTIFICATIES: {{ .Values.config.zgw.endpoint.openNotificaties }}
-  ZGW_ENDPOINT_OPENZAAK: {{ .Values.config.zgw.endpoint.openZaak }}
-  ZGW_ENDPOINT_OPENKLANT: {{ .Values.config.zgw.endpoint.openKlant }}
-  ZGW_ENDPOINT_BESLUITEN: {{ .Values.config.zgw.endpoint.besluiten }}
-  ZGW_ENDPOINT_OBJECTEN: {{ .Values.config.zgw.endpoint.objecten }}
-  ZGW_ENDPOINT_OBJECTTYPEN: {{ .Values.config.zgw.endpoint.objectTypen }}
-  ZGW_ENDPOINT_CONTACTMOMENTEN: {{ .Values.config.zgw.endpoint.contactMomenten }}
-  ZGW_WHITELIST_ZAAKCREATE_IDS: {{ .Values.config.zgw.whitelist.zaakCreate.ids | quote }}
-  ZGW_WHITELIST_ZAAKUPDATE_IDS: {{ .Values.config.zgw.whitelist.zaakUpdate.ids | quote }}
-  ZGW_WHITELIST_ZAAKCLOSE_IDS: {{ .Values.config.zgw.whitelist.zaakClose.ids | quote }}
-  ZGW_WHITELIST_TASKASSIGNED_IDS: {{ .Values.config.zgw.whitelist.taskAssigned.ids | quote }}
-  ZGW_WHITELIST_DECISIONMADE_IDS: {{ .Values.config.zgw.whitelist.decisionMade.ids | quote }}
-  ZGW_WHITELIST_MESSAGE_ALLOWED: {{ .Values.config.zgw.whitelist.message.allowed | quote }}
-  NOTIFY_API_BASEURL: {{ .Values.config.notify.api.baseUrl }}
-  NOTIFY_TEMPLATEID_DECISIONMADE: {{ .Values.config.notify.templateId.decisionMade }}
-  NOTIFY_TEMPLATEID_EMAIL_ZAAKCREATE: {{ .Values.config.notify.templateId.email.zaakCreate }}
-  NOTIFY_TEMPLATEID_EMAIL_ZAAKUPDATE: {{ .Values.config.notify.templateId.email.zaakUpdate }}
-  NOTIFY_TEMPLATEID_EMAIL_ZAAKCLOSE: {{ .Values.config.notify.templateId.email.zaakClose }}
-  NOTIFY_TEMPLATEID_EMAIL_TASKASSIGNED: {{ .Values.config.notify.templateId.email.taskAssigned }}
-  NOTIFY_TEMPLATEID_EMAIL_MESSAGERECEIVED: {{ .Values.config.notify.templateId.email.messageReceived }}
-  NOTIFY_TEMPLATEID_SMS_ZAAKCREATE: {{ .Values.config.notify.templateId.sms.zaakCreate }}
-  NOTIFY_TEMPLATEID_SMS_ZAAKUPDATE: {{ .Values.config.notify.templateId.sms.zaakUpdate }}
-  NOTIFY_TEMPLATEID_SMS_ZAAKCLOSE: {{ .Values.config.notify.templateId.sms.zaakClose }}
-  NOTIFY_TEMPLATEID_SMS_TASKASSIGNED: {{ .Values.config.notify.templateId.sms.taskAssigned }}
-  NOTIFY_TEMPLATEID_SMS_MESSAGERECEIVED: {{ .Values.config.notify.templateId.sms.messageReceived }}
-  KEYCLOAK_AUTHSERVERURL: {{ .Values.config.keycloak.authServerUrl }}
-  KEYCLOAK_TOKENEXCHANGEAUDIENCE: {{ .Values.config.keycloak.tokenExchangeAudience }}
-  BRP_BASEURL: {{ .Values.config.brp.baseUrl }}
+  OMC_ACTOR_ID: {{ default uuidv4 .Values.settings.omc.actor.id }}
+  OMC_AUTH_JWT_USERID: {{ default ("-" | quote) .Values.settings.omc.auth.jwt.userId}}
+  OMC_AUTH_JWT_USERNAME: {{ default ("-" | quote) .Values.settings.omc.auth.jwt.userName }}
+  OMC_CONTEXT_PATH: {{ default "" .Values.settings.omc.context.path }}
+  OMC_FEATURE_WORKFLOW_VERSION: {{ default 2 .Values.settings.omc.feature.workflow.version | quote }}
+  KTO_URL: {{ default ("-" | quote) .Values.settings.kto.url }}
+  KTO_CASETYPESETTINGS: {{ default ("-") .Values.settings.kto.caseTypeSettings | toJson }}
+  ZGW_AUTH_JWT_USERID: {{ default ("-" | quote) .Values.settings.zgw.auth.jwt.userId}}
+  ZGW_AUTH_JWT_USERNAME: {{ default ("-" | quote) .Values.settings.zgw.auth.jwt.userName}}
+  ZGW_ENDPOINT_OPENNOTIFICATIES: {{ .Values.settings.zgw.endpoint.openNotificaties }}
+  ZGW_ENDPOINT_OPENZAAK: {{ .Values.settings.zgw.endpoint.openZaak }}
+  ZGW_ENDPOINT_OPENKLANT: {{ .Values.settings.zgw.endpoint.openKlant }}
+  ZGW_ENDPOINT_BESLUITEN: {{ default "" .Values.settings.zgw.endpoint.besluiten }}
+  ZGW_ENDPOINT_OBJECTEN: {{ default "" .Values.settings.zgw.endpoint.objecten }}
+  ZGW_ENDPOINT_OBJECTTYPEN: {{ default "" .Values.settings.zgw.endpoint.objectTypen }}
+  ZGW_ENDPOINT_CONTACTMOMENTEN: {{ default .Values.settings.zgw.endpoint.openKlant .Values.settings.zgw.endpoint.contactMomenten }}
+  ZGW_WHITELIST_ZAAKCREATE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakCreate.ids | quote }}
+  ZGW_WHITELIST_ZAAKUPDATE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakUpdate.ids | quote }}
+  ZGW_WHITELIST_ZAAKCLOSE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakClose.ids | quote }}
+  ZGW_WHITELIST_TASKASSIGNED_IDS: {{ default "*" .Values.settings.zgw.whitelist.taskAssigned.ids | quote }}
+  ZGW_WHITELIST_DECISIONMADE_IDS: {{ default "*" .Values.settings.zgw.whitelist.decisionMade.ids | quote }}
+  ZGW_WHITELIST_MESSAGE_ALLOWED: {{ default "true" .Values.settings.zgw.whitelist.message.allowed | quote }}
+  NOTIFY_API_BASEURL: {{ .Values.settings.notify.api.baseUrl }}
+  NOTIFY_TEMPLATEID_DECISIONMADE: {{ default "" .Values.settings.notify.templateId.decisionMade }}
+  NOTIFY_TEMPLATEID_EMAIL_ZAAKCREATE: {{ .Values.settings.notify.templateId.email.zaakCreate }}
+  NOTIFY_TEMPLATEID_EMAIL_ZAAKUPDATE: {{ .Values.settings.notify.templateId.email.zaakUpdate }}
+  NOTIFY_TEMPLATEID_EMAIL_ZAAKCLOSE: {{ .Values.settings.notify.templateId.email.zaakClose }}
+  NOTIFY_TEMPLATEID_EMAIL_TASKASSIGNED: {{ .Values.settings.notify.templateId.email.taskAssigned }}
+  NOTIFY_TEMPLATEID_EMAIL_MESSAGERECEIVED: {{ .Values.settings.notify.templateId.email.messageReceived }}
+  NOTIFY_TEMPLATEID_SMS_ZAAKCREATE: {{ .Values.settings.notify.templateId.sms.zaakCreate }}
+  NOTIFY_TEMPLATEID_SMS_ZAAKUPDATE: {{ .Values.settings.notify.templateId.sms.zaakUpdate }}
+  NOTIFY_TEMPLATEID_SMS_ZAAKCLOSE: {{ .Values.settings.notify.templateId.sms.zaakClose }}
+  NOTIFY_TEMPLATEID_SMS_TASKASSIGNED: {{ .Values.settings.notify.templateId.sms.taskAssigned }}
+  NOTIFY_TEMPLATEID_SMS_MESSAGERECEIVED: {{ .Values.settings.notify.templateId.sms.messageReceived }}
+  KEYCLOAK_AUTHSERVERURL: {{ .Values.settings.keycloak.authServerUrl }}
+  KEYCLOAK_TOKENEXCHANGEAUDIENCE: {{ .Values.settings.keycloak.tokenExchangeAudience }}
+  BRP_BASEURL: {{ .Values.settings.brp.baseUrl }}

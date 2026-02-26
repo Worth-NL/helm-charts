@@ -1,3 +1,11 @@
+nameOverride:
+fullnameOverride:
+
+image:
+  repository: "docker.io/worthnl/notifynl-omc"
+  pullPolicy: IfNotPresent
+  tag:
+
 ingress:
   enabled: false
   hostname:
@@ -8,8 +16,6 @@ ingress:
   annotations: {}
 
 app:
-  overrides:
-    tag:
   port: 5270
   resources:
     requests:
@@ -24,10 +30,10 @@ app:
   extraEnvConfigMaps: []
   podLabels: {}
 
-config:
+settings:
   aspnetcore:
     # -- Defines in which mode (environment) the OMC application is running
-    environment: Development
+    environment: Production
   sentry:
     # -- It points out to the Sentry project configured to store captured events from the app (messages, exceptions)
     dsn: https://5cfe508231898da382bc22bc2c164488@o4507152178741248.ingest.de.sentry.io/4507152246112336
@@ -39,7 +45,7 @@ config:
       key:
     templateId:
       # -- Should be generated per specific business use case from "Notify NL" Admin Portal
-      decisionMade: ""
+      decisionMade:
       email: &notificationTemplates
         # -- Should be generated per specific business use case from "Notify NL" Admin Portal
         zaakCreate:
@@ -101,11 +107,11 @@ config:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end
       openKlant:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end
-      besluiten: ""
+      besluiten:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end
-      objecten: ""
+      objecten:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end
-      objectTypen: ""
+      objectTypen:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end
       contactMomenten:
     whitelist:
@@ -131,17 +137,17 @@ config:
       objectType:
         taskObjectType:
           # -- Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service
-          uuid: ""
+          uuid:
         messageObjectType:
           # -- Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service
-          uuid: ""
+          uuid:
           # -- It can be taken from "version" value set in "ObjectTypen" Web API service
           version: 1
         decisionInfoObjectType:
           # -- Is provided by the user based on "informatieobjecttype" from "informatieobject" retrieved from "OpenZaak" Web API service when querying "besluiten"
-          uuids: ""
+          uuids:
         ktoObjectType:
-          uuids: ""
+          uuids:
   kto:
     auth:
       jwt:
@@ -158,7 +164,7 @@ config:
     caseTypeSettings:
   keycloak:
     # -- Base URL of the Keycloak authorization server used to obtain access tokens for BRP
-    authServerUrl: ""
+    authServerUrl:
     # -- Client identifier registered in Keycloak for OMC BRP access
     clientId: ""
     # -- Client secret used for OAuth2 token exchange with Keycloak
@@ -167,7 +173,7 @@ config:
     tokenExchangeAudience: ""
   brp:
     # -- Base URL of the BRP (Haal Centraal) API gateway
-    baseUrl: ""
+    baseUrl:
     clientCert:
       pem:
         # -- Absolute path to the PEM-encoded client certificate used for mutual TLS (mTLS) authentication

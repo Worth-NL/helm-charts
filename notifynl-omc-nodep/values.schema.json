@@ -24,6 +24,12 @@
     "stringOrStar": {
       "type": "string",
       "default": "*"
+    },
+    "uriOrNull": {
+      "anyOf": [
+        { "type": "null" },
+        { "type": "string", "format": "uri" }
+      ]
     }
   },
 
@@ -76,7 +82,7 @@
       ]
     },
 
-    "config": {
+    "settings": {
       "type": "object",
       "properties": {
 
@@ -196,9 +202,6 @@
                     "issuer": {
                       "type": ["string", "null"]
                     },
-                    "audience": {
-                      "type": ["string", "null"]
-                    },
                     "expiresInMin": {
                       "type": "integer",
                       "minimum": 60,
@@ -214,7 +217,6 @@
                   "required": [
                     "secret",
                     "issuer",
-                    "audience",
                     "expiresInMin",
                     "userId",
                     "userName"
@@ -266,9 +268,6 @@
                     "issuer": { 
                       "type": "string"
                     },
-                    "audience": { 
-                      "type": ["string", "null"]
-                    },
                     "expiresInMin": {
                       "type": "integer",
                       "minimum": 1,
@@ -280,7 +279,14 @@
                     "userName": {
                       "type": "string"
                     }                
-                  }
+                  },
+                  "required": [
+                    "secret",
+                    "issuer",
+                    "expiresInMin",
+                    "userId",
+                    "userName"
+                  ]
                 },
                 "key": {
                   "type": "object",
@@ -294,7 +300,10 @@
                     "objectTypen": {
                       "type": ["string", "null"]
                     }
-                  }
+                  },
+                  "required": [
+                    "openklant"
+                  ]
                 }
               }
             },
@@ -315,22 +324,23 @@
                   "format": "uri" 
                 },
                 "besluiten": { 
-                  "type": "string", 
-                  "format": "uri" 
+                  "$ref": "#/definitions/uriOrNull"
                 },
                 "objecten": { 
-                  "type": "string", 
-                  "format": "uri" 
+                  "$ref": "#/definitions/uriOrNull"
                 },
                 "objectTypen": { 
-                  "type": "string", 
-                  "format": "uri" 
+                  "$ref": "#/definitions/uriOrNull"
                 },
                 "contactMomenten": { 
-                  "type": "string", 
-                  "format": "uri" 
+                  "$ref": "#/definitions/uriOrNull"
                 }
-              }
+              },
+              "required": [
+                "openNotificaties",
+                "openKlant",
+                "openZaak"
+              ]
             },
 
             "variable": {
