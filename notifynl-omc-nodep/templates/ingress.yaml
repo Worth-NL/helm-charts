@@ -30,7 +30,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ .Release.Name }}
+            name: {{ .Release.Name }}-omc
             port:
               name: app
 {{- end }}
