@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-omc
+  name: {{ include "omc.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "labels.full" . | nindent 4 }}
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: omc
-        image: docker.io/worthnl/notifynl-omc:{{ default .Chart.AppVersion .Values.app.overrides.tag }}
+        image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
         command:
         - dotnet
         - OMC.EventsHandler.dll
@@ -31,10 +31,10 @@ spec:
           protocol: TCP
         envFrom:
           - configMapRef:
-              name: {{ .Release.Name }}-omc-config
+              name: {{ include "omc.fullname" . }}
               optional: false
           - secretRef:
-              name: {{ .Release.Name }}-omc-secret
+              name: {{ include "omc.fullname" . }}
               optional: false
           {{- range $i := .Values.app.extraEnvConfigMaps }}
           - configMapRef:
@@ -69,5 +69,5 @@ spec:
           periodSeconds: 30
           successThreshold: 1
           failureThreshold: 6
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
       restartPolicy: Always
