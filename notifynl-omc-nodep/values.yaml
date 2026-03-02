@@ -64,6 +64,7 @@ settings:
       id:
     auth:
       jwt:
+        audience:
         # -- For security reasons it should be at least 64 bytes long
         secret:
         # -- Something identifying Notify NL (OMC Web API) service (it will be used internally) - The OMC is the issuer
