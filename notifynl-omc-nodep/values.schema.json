@@ -195,6 +195,9 @@
                 "jwt": {
                   "type": "object",
                   "properties": {
+                    "audience": {
+                      "type": "string"
+                    },
                     "secret": {
                       "type": "string",
                       "minLength": 64
@@ -215,6 +218,7 @@
                     }
                   },
                   "required": [
+                    "audience",
                     "secret",
                     "issuer",
                     "expiresInMin",

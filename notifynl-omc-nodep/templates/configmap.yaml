@@ -14,6 +14,7 @@ data:
   SENTRY_ENVIRONMENT: {{ .Values.settings.sentry.environment }}
   {{- end }}
   OMC_ACTOR_ID: {{ default uuidv4 .Values.settings.omc.actor.id }}
+  OMC_AUTH_JWT_AUDIENCE: {{ default ("-" | quote) .Values.settings.omc.auth.jwt.audience }}
   OMC_AUTH_JWT_USERID: {{ default ("-" | quote) .Values.settings.omc.auth.jwt.userId}}
   OMC_AUTH_JWT_USERNAME: {{ default ("-" | quote) .Values.settings.omc.auth.jwt.userName }}
   OMC_CONTEXT_PATH: {{ default "" .Values.settings.omc.context.path }}
