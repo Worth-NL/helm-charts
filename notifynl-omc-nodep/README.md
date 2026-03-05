@@ -1,6 +1,6 @@
 # notifynl-omc-nodep
 
-![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.17.18](https://img.shields.io/badge/AppVersion-1.17.18-informational?style=flat-square)
+![Version: 0.11.0](https://img.shields.io/badge/Version-0.11.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.17.18](https://img.shields.io/badge/AppVersion-1.17.18-informational?style=flat-square)
 
 Chart to deploy the NotifyNL OMC application.
 
@@ -37,6 +37,8 @@ Kubernetes: `>=1.26.6`
 | ingress.tls.enabled | bool | `false` |  |
 | ingress.tls.secret | string | `nil` |  |
 | nameOverride | string | `nil` |  |
+| service.port | int | `80` |  |
+| service.type | string | `"ClusterIP"` |  |
 | settings.aspnetcore.environment | string | `"Production"` | Defines in which mode (environment) the OMC application is running |
 | settings.brp.baseUrl | string | `nil` | Base URL of the BRP (Haal Centraal) API gateway |
 | settings.brp.clientCert.pem.path | string | `""` | Absolute path to the PEM-encoded client certificate used for mutual TLS (mTLS) authentication |
