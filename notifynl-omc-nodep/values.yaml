@@ -30,6 +30,10 @@ app:
   extraEnvConfigMaps: []
   podLabels: {}
 
+service:
+  type: ClusterIP
+  port: 80
+
 settings:
   aspnetcore:
     # -- Defines in which mode (environment) the OMC application is running
