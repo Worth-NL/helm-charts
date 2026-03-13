@@ -384,8 +384,8 @@
                     "ktoObjectType": {
                       "type": "object",
                       "properties": {
-                        "uuids": {
-                          "$ref": "#/definitions/uuidList"
+                        "uuid": {
+                          "$ref": "#/definitions/uuid"
                         }
                       }
                     }
