@@ -1,6 +1,6 @@
 # notifynl-omc-nodep
 
-![Version: 0.11.0](https://img.shields.io/badge/Version-0.11.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.17.18](https://img.shields.io/badge/AppVersion-1.17.18-informational?style=flat-square)
+![Version: 0.12.0](https://img.shields.io/badge/Version-0.12.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.17.18](https://img.shields.io/badge/AppVersion-1.17.18-informational?style=flat-square)
 
 Chart to deploy the NotifyNL OMC application.
 
@@ -93,9 +93,9 @@ Kubernetes: `>=1.26.6`
 | settings.zgw.endpoint.openNotificaties | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
 | settings.zgw.endpoint.openZaak | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
 | settings.zgw.variable.objectType.decisionInfoObjectType.uuids | string | `nil` | Is provided by the user based on "informatieobjecttype" from "informatieobject" retrieved from "OpenZaak" Web API service when querying "besluiten" |
-| settings.zgw.variable.objectType.ktoObjectType.uuids | string | `nil` |  |
+| settings.zgw.variable.objectType.ktoObjectType.uuid | string | `nil` |  |
 | settings.zgw.variable.objectType.messageObjectType.uuid | string | `nil` | Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service |
-| settings.zgw.variable.objectType.messageObjectType.version | int | `1` | It can be taken from "version" value set in "ObjectTypen" Web API service |
+| settings.zgw.variable.objectType.messageObjectType.version | int | `2` | It can be taken from "version" value set in "ObjectTypen" Web API service |
 | settings.zgw.variable.objectType.taskObjectType.uuid | string | `nil` | Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service |
 | settings.zgw.whitelist.decisionMade.ids | string | `"*"` | Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service |
 | settings.zgw.whitelist.message.allowed | bool | `true` | Is provided by the user |
