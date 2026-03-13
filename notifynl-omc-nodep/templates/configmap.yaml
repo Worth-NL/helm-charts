@@ -30,11 +30,11 @@ data:
   ZGW_ENDPOINT_OBJECTEN: {{ default "" .Values.settings.zgw.endpoint.objecten }}
   ZGW_ENDPOINT_OBJECTTYPEN: {{ default "" .Values.settings.zgw.endpoint.objectTypen }}
   ZGW_ENDPOINT_CONTACTMOMENTEN: {{ default .Values.settings.zgw.endpoint.openKlant .Values.settings.zgw.endpoint.contactMomenten }}
-  ZGW_VARIABLE_OBJECTTYPE_TASKOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.taskObjectType.uuid }}
-  ZGW_VARIABLE_OBJECTTYPE_MESSAGEOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.messageObjectType.uuid }}
+  ZGW_VARIABLE_OBJECTTYPE_TASKOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.taskObjectType.uuid | quote }}
+  ZGW_VARIABLE_OBJECTTYPE_MESSAGEOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.messageObjectType.uuid | quote }}
   ZGW_VARIABLE_OBJECTTYPE_MESSAGEOBJECTTYPE_VERSION: {{ default 2 .Values.settings.zgw.variable.objectType.messageObjectType.version }}
-  ZGW_VARIABLE_OBJECTTYPE_DECISIONINFOOBJECTTYPE_UUIDS: {{ default "" .Values.settings.zgw.variable.objectType.decisionInfoObjectType.uuids }}
-  ZGW_VARIABLE_OBJECTTYPE_KTOOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.ktoObjectType.uuid }}
+  ZGW_VARIABLE_OBJECTTYPE_DECISIONINFOOBJECTTYPE_UUIDS: {{ default "" .Values.settings.zgw.variable.objectType.decisionInfoObjectType.uuids | quote }}
+  ZGW_VARIABLE_OBJECTTYPE_KTOOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.ktoObjectType.uuid | quote }}
   ZGW_WHITELIST_ZAAKCREATE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakCreate.ids | quote }}
   ZGW_WHITELIST_ZAAKUPDATE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakUpdate.ids | quote }}
   ZGW_WHITELIST_ZAAKCLOSE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakClose.ids | quote }}
