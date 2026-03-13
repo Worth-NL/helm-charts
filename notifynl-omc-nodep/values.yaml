@@ -147,12 +147,12 @@ settings:
           # -- Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service
           uuid:
           # -- It can be taken from "version" value set in "ObjectTypen" Web API service
-          version: 1
+          version: 2
         decisionInfoObjectType:
           # -- Is provided by the user based on "informatieobjecttype" from "informatieobject" retrieved from "OpenZaak" Web API service when querying "besluiten"
           uuids:
         ktoObjectType:
-          uuids:
+          uuid:
   kto:
     auth:
       jwt:
