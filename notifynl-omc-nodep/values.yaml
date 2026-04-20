@@ -1,11 +1,9 @@
 nameOverride:
 fullnameOverride:
-
 image:
   repository: "docker.io/worthnl/notifynl-omc"
   pullPolicy: IfNotPresent
-  tag:
-
+  tag: 1.17.19
 ingress:
   enabled: false
   hostname:
@@ -14,7 +12,6 @@ ingress:
     enabled: false
     secret:
   annotations: {}
-
 app:
   port: 5270
   resources:
@@ -29,11 +26,9 @@ app:
   # -- List of k8s configMap resource names to be loaded as additional environment variables in deployment
   extraEnvConfigMaps: []
   podLabels: {}
-
 service:
   type: ClusterIP
   port: 80
-
 settings:
   aspnetcore:
     # -- Defines in which mode (environment) the OMC application is running
@@ -62,7 +57,7 @@ settings:
         # -- Should be generated per specific business use case from "Notify NL" Admin Portal
         messageReceived:
       sms:
-        <<: *notificationTemplates
+        !!merge <<: *notificationTemplates
   omc:
     actor:
       id:
