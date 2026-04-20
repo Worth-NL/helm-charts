@@ -1,6 +1,6 @@
 # notifynl-omc
 
-![Version: 0.4.30](https://img.shields.io/badge/Version-0.4.30-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.17.18](https://img.shields.io/badge/AppVersion-1.17.18-informational?style=flat-square)
+![Version: 0.4.31](https://img.shields.io/badge/Version-0.4.31-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.17.19](https://img.shields.io/badge/AppVersion-1.17.19-informational?style=flat-square)
 
 Chart to deploy the NotifyNL OMC application.
 
@@ -114,7 +114,7 @@ extraIngress:
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.registry | string | `"docker.io"` |  |
 | image.repository | string | `"worthnl/notifynl-omc"` |  |
-| image.tag | string | `"1.17.18"` |  |
+| image.tag | string | `"1.17.19"` |  |
 | ingress.annotations."nginx.ingress.kubernetes.io/force-ssl-redirect" | string | `"true"` |  |
 | ingress.annotations."nginx.ingress.kubernetes.io/use-regex" | string | `"true"` |  |
 | ingress.apiVersion | string | `nil` |  |
