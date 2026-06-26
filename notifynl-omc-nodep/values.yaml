@@ -3,7 +3,7 @@ fullnameOverride:
 image:
   repository: "docker.io/worthnl/notifynl-omc"
   pullPolicy: IfNotPresent
-  tag: 1.17.19
+  tag: 2.0.1
 ingress:
   enabled: false
   hostname:
