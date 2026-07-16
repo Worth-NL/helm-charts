@@ -293,6 +293,12 @@
 				"zgw": {
 					"type": "object",
 					"properties": {
+						"urn": {
+							"type": [
+								"string",
+								"null"
+							]
+						},
 						"auth": {
 							"type": "object",
 							"properties": {

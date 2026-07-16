@@ -21,6 +21,7 @@ data:
   OMC_FEATURE_WORKFLOW_VERSION: {{ default 2 .Values.settings.omc.feature.workflow.version | quote }}
   KTO_URL: {{ default ("-" | quote) .Values.settings.kto.url }}
   KTO_CASETYPESETTINGS: {{ default ("-") .Values.settings.kto.caseTypeSettings | toJson }}
+  ZGW_URN: {{ default "" .Values.settings.zgw.urn }}
   ZGW_AUTH_JWT_USERID: {{ default ("-" | quote) .Values.settings.zgw.auth.jwt.userId}}
   ZGW_AUTH_JWT_USERNAME: {{ default ("-" | quote) .Values.settings.zgw.auth.jwt.userName}}
   ZGW_ENDPOINT_OPENNOTIFICATIES: {{ .Values.settings.zgw.endpoint.openNotificaties }}

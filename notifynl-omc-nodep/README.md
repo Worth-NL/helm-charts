@@ -1,6 +1,6 @@
 # notifynl-omc-nodep
 
-![Version: 0.15.2](https://img.shields.io/badge/Version-0.15.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
+![Version: 0.15.3](https://img.shields.io/badge/Version-0.15.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
 
 Chart to deploy the NotifyNL OMC application.
 
@@ -96,6 +96,7 @@ Kubernetes: `>=1.26.6`
 | settings.zgw.endpoint.openKlant | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
 | settings.zgw.endpoint.openNotificaties | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
 | settings.zgw.endpoint.openZaak | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
+| settings.zgw.urn | string | `nil` | Urn identifying this OMC instance (OIN/RSIN) as the source of outgoing CloudEvents, e.g. "urn:nld:oin:{OIN}:{applicatie}" |
 | settings.zgw.variable.objectType.decisionInfoObjectType.uuids | string | `nil` | Is provided by the user based on "informatieobjecttype" from "informatieobject" retrieved from "OpenZaak" Web API service when querying "besluiten" |
 | settings.zgw.variable.objectType.ktoObjectType.uuid | string | `nil` |  |
 | settings.zgw.variable.objectType.messageObjectType.uuid | string | `nil` | Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service |
