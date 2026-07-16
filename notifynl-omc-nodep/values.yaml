@@ -182,3 +182,15 @@ settings:
       pem:
         # -- Absolute path to the PEM-encoded private key corresponding to the BRP client certificate
         path: ""
+  mijnOverheid:
+    auth:
+      # -- Client identifier registered for OAuth2 authentication with MijnOverheid
+      clientId: ""
+      # -- Client secret used for OAuth2 token exchange with MijnOverheid
+      secret: ""
+      token:
+        # -- Token endpoint URL used to obtain OAuth2 access tokens for MijnOverheid
+        endpoint:
+    webhook:
+      # -- Webhook URL that ZGW CloudEvents are forwarded to on MijnOverheid's side
+      url:
