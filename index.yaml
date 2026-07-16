@@ -2896,6 +2896,31 @@ entries:
           url: "https://github.com/Worth-NL/NotifyNL-OMC"
     apiVersion: v2
     appVersion: 2.0.1
+    created: "2026-07-16T09:56:03.833322308Z"
+    description: Chart to deploy the NotifyNL OMC application.
+    digest: 093a8623de5fbe92ef68a7a1bb268cb6474b06b5538bc5d9d2da7be34baf5fd2
+    icon: https://avatars.githubusercontent.com/u/138866112?s=200&v=4
+    keywords:
+    - notifynl
+    - omc
+    kubeVersion: '>=1.26.6'
+    maintainers:
+    - email: pgaetani@worth.systems
+      name: Pier-Angelo Gaetani
+    name: notifynl-omc-nodep
+    type: application
+    urls:
+    - https://github.com/Worth-NL/helm-charts/releases/download/notifynl-omc-nodep-0.15.2/notifynl-omc-nodep-0.15.2.tgz
+    version: 0.15.2
+  - annotations:
+      artifacthub.io/license: EUPL-1.2
+      artifacthub.io/links: |
+        - name: "Chart source"
+          url: "https://github.com/Worth-NL/helm-charts"
+        - name: "App source"
+          url: "https://github.com/Worth-NL/NotifyNL-OMC"
+    apiVersion: v2
+    appVersion: 2.0.1
     created: "2026-07-01T14:27:00.138835481Z"
     description: Chart to deploy the NotifyNL OMC application.
     digest: 8e86df25009bfd001127d2b6c9e0129b759bae12b1d88f0dc17093573529cc08
@@ -3312,4 +3337,4 @@ entries:
     urls:
     - https://github.com/Worth-NL/helm-charts/releases/download/notifynl-omc-nodep-0.1.0/notifynl-omc-nodep-0.1.0.tgz
     version: 0.1.0
-generated: "2026-07-01T14:27:00.139193861Z"
+generated: "2026-07-16T09:56:03.83359782Z"
