@@ -80,6 +80,8 @@ settings:
       workflow:
         version: 2
   zgw:
+    # -- Urn identifying this OMC instance (OIN/RSIN) as the source of outgoing CloudEvents, e.g. "urn:nld:oin:{OIN}:{applicatie}"
+    urn:
     auth:
       jwt:
         # -- Internal implementation of Open services is regulating this, however it's better to use something longer as well
