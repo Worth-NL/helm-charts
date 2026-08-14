@@ -13,18 +13,27 @@ spec:
   template:
     metadata:
       creationTimestamp: null
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
       labels:
         {{- include "labels.full" . | nindent 8 }}
         {{- with .Values.app.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
+      automountServiceAccountToken: false
       containers:
       - name: omc
         image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
         command:
         - dotnet
         - OMC.EventsHandler.dll
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
         ports:
         - name: app
           containerPort: {{ .Values.app.port }}
@@ -70,4 +79,3 @@ spec:
           successThreshold: 1
           failureThreshold: 6
         imagePullPolicy: {{ default "IfNotPresent" .Values.image.pullPolicy }}
-      restartPolicy: Always

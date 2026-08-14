@@ -60,6 +60,7 @@ settings:
         !!merge <<: *notificationTemplates
   omc:
     actor:
+      # -- Recommended to pin this explicitly. Left unset, it defaults to a freshly-generated UUID on every `helm upgrade`, which now triggers a pod restart on every upgrade (not just real config changes) since ConfigMap/Secret content is hashed into the deployment's rollout trigger
       id:
     auth:
       jwt:
