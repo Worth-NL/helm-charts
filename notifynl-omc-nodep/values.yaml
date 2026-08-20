@@ -56,8 +56,13 @@ settings:
         taskAssigned:
         # -- Should be generated per specific business use case from "Notify NL" Admin Portal
         messageReceived:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox digitale-post fallback only - no SMS equivalent exists.
+        messageBox:
       sms:
         !!merge <<: *notificationTemplates
+      letter:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox postal-letter fallback.
+        messageBox:
   omc:
     actor:
       id:
@@ -101,6 +106,8 @@ settings:
         objecten:
         # -- It needs to be generated from "ObjectTypen" Web API service UI
         objectTypen:
+        # -- It needs to be generated from "Open VTB" Web API service UI. Required only if the MOBB/Berichtenbox scenario is used.
+        openvtb:
     endpoint:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end
       openNotificaties:
@@ -116,6 +123,10 @@ settings:
       objectTypen:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end
       contactMomenten:
+      # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end. MOBB fetches real attachment content from here.
+      documenten:
+      # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end. Required only if the MOBB/Berichtenbox scenario is used.
+      openVtb:
     whitelist:
       zaakCreate:
         # -- Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service
@@ -135,6 +146,9 @@ settings:
       message:
         # -- Is provided by the user
         allowed: true
+      vtbMessage:
+        # -- Is provided by the user based on the CloudEvent "type" received from "Open VTB" Web API service
+        types: "*"
     variable:
       objectType:
         taskObjectType:
