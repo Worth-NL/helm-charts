@@ -1,8 +1,47 @@
-Thank you for installing {{ .Chart.Name }}.
+Thank you for installing {{ .Chart.Name }} (app version {{ default .Chart.AppVersion .Values.image.tag }}).
 
-Your release is named {{ .Release.Name }}.
+Your release is named "{{ .Release.Name }}", deployed to the "{{ .Release.Namespace }}" namespace.
 
-To learn more about the release, try:
+1. Check the rollout status
+   $ kubectl rollout status deployment/{{ include "omc.fullname" . }} -n {{ .Release.Namespace }}
 
-  $ helm status {{ .Release.Name }}
-  $ helm get {{ .Release.Name }}
+2. Access the application
+{{- if .Values.ingress.enabled }}
+   Exposed via Ingress at:
+     http{{ if .Values.ingress.tls.enabled }}s{{ end }}://{{ .Values.ingress.hostname }}
+{{- else if contains "LoadBalancer" .Values.service.type }}
+   NOTE: it may take a few minutes for the LoadBalancer IP to become available. Watch it with:
+     $ kubectl get svc -n {{ .Release.Namespace }} {{ include "omc.fullname" . }} -w
+   Then reach the app at:
+     $ export SERVICE_IP=$(kubectl get svc -n {{ .Release.Namespace }} {{ include "omc.fullname" . }} -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+     $ echo http://$SERVICE_IP:{{ .Values.service.port }}
+{{- else if contains "NodePort" .Values.service.type }}
+   $ export NODE_PORT=$(kubectl get svc -n {{ .Release.Namespace }} {{ include "omc.fullname" . }} -o jsonpath="{.spec.ports[0].nodePort}")
+   $ export NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}")
+   $ echo http://$NODE_IP:$NODE_PORT
+{{- else }}
+   Ingress is disabled ("ingress.enabled: false") and the Service is ClusterIP-only, so it's
+   only reachable from inside the cluster, at:
+     http://{{ include "omc.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.port }}
+   To reach it from your machine for testing, port-forward instead:
+     $ kubectl port-forward -n {{ .Release.Namespace }} svc/{{ include "omc.fullname" . }} {{ .Values.app.port }}:{{ .Values.service.port }}
+     $ curl http://localhost:{{ .Values.app.port }}
+   To expose it externally instead, set "ingress.enabled: true" and "ingress.hostname" in your
+   values file.
+{{- end }}
+
+3. View application logs
+   $ kubectl logs -n {{ .Release.Namespace }} -l app.kubernetes.io/name={{ include "omc.name" . }},app.kubernetes.io/instance={{ .Release.Name }} -f
+
+4. Good to know
+   - Changing any "settings.*" value and re-running "helm upgrade" automatically restarts the
+     app to pick up the change — no manual rollout restart needed.
+   - "settings.omc.actor.id" is left unpinned by default, which means it (and therefore the app)
+     restarts on every "helm upgrade", not just ones that change real config. Pin it in your
+     values file to avoid that.
+   - The full configuration reference (every "settings.*" value, and what external service it
+     corresponds to) is in this chart's README.
+
+General release info:
+   $ helm status {{ .Release.Name }} -n {{ .Release.Namespace }}
+   $ helm get all {{ .Release.Name }} -n {{ .Release.Namespace }}
