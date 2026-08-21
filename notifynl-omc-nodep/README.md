@@ -1,6 +1,6 @@
 # notifynl-omc-nodep
 
-![Version: 0.16.0](https://img.shields.io/badge/Version-0.16.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
+![Version: 0.16.1](https://img.shields.io/badge/Version-0.16.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
 
 Chart to deploy the NotifyNL OMC application.
 
@@ -107,9 +107,11 @@ Kubernetes: `>=1.26.6`
 | settings.zgw.variable.objectType.ktoObjectType.uuid | string | `nil` |  |
 | settings.zgw.variable.objectType.messageObjectType.uuid | string | `nil` | Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service |
 | settings.zgw.variable.objectType.messageObjectType.version | int | `2` | It can be taken from "version" value set in "ObjectTypen" Web API service |
+| settings.zgw.variable.objectType.printObjectType.uuid | string | `nil` | Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service. Required only if the print (printstraat) scenario is used. |
 | settings.zgw.variable.objectType.taskObjectType.uuid | string | `nil` | Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service |
 | settings.zgw.whitelist.decisionMade.ids | string | `"*"` | Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service |
 | settings.zgw.whitelist.message.allowed | bool | `true` | Is provided by the user |
+| settings.zgw.whitelist.print.allowed | bool | `false` | Is provided by the user. Off by default: enabling it lets any object of the print objecttype be printed and posted, so it should be switched on deliberately per environment |
 | settings.zgw.whitelist.taskAssigned.ids | string | `"*"` | Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service |
 | settings.zgw.whitelist.vtbMessage.types | string | `"*"` | Is provided by the user based on the CloudEvent "type" received from "Open VTB" Web API service |
 | settings.zgw.whitelist.zaakClose.ids | string | `"*"` | Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service |
