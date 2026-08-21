@@ -56,8 +56,13 @@ settings:
         taskAssigned:
         # -- Should be generated per specific business use case from "Notify NL" Admin Portal
         messageReceived:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox digitale-post fallback only - no SMS equivalent exists.
+        messageBox:
       sms:
         !!merge <<: *notificationTemplates
+      letter:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox postal-letter fallback.
+        messageBox:
   omc:
     actor:
       # -- Recommended to pin this explicitly. Left unset, it defaults to a freshly-generated UUID on every `helm upgrade`, which now triggers a pod restart on every upgrade (not just real config changes) since ConfigMap/Secret content is hashed into the deployment's rollout trigger
@@ -102,6 +107,8 @@ settings:
         objecten:
         # -- It needs to be generated from "ObjectTypen" Web API service UI
         objectTypen:
+        # -- It needs to be generated from "Open VTB" Web API service UI. Required only if the MOBB/Berichtenbox scenario is used.
+        openvtb:
     endpoint:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end
       openNotificaties:
@@ -117,6 +124,10 @@ settings:
       objectTypen:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end
       contactMomenten:
+      # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end. MOBB fetches real attachment content from here.
+      documenten:
+      # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end. Required only if the MOBB/Berichtenbox scenario is used.
+      openVtb:
     whitelist:
       zaakCreate:
         # -- Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service
@@ -136,6 +147,13 @@ settings:
       message:
         # -- Is provided by the user
         allowed: true
+      vtbMessage:
+        # -- Is provided by the user based on the CloudEvent "type" received from "Open VTB" Web API service
+        types: "*"
+      print:
+        # -- Is provided by the user. Off by default: enabling it lets any object of the print objecttype
+        # be printed and posted, so it should be switched on deliberately per environment
+        allowed: false
     variable:
       objectType:
         taskObjectType:
@@ -150,6 +168,9 @@ settings:
           # -- Is provided by the user based on "informatieobjecttype" from "informatieobject" retrieved from "OpenZaak" Web API service when querying "besluiten"
           uuids:
         ktoObjectType:
+          uuid:
+        printObjectType:
+          # -- Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service. Required only if the print (printstraat) scenario is used.
           uuid:
   kto:
     auth:

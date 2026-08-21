@@ -31,17 +31,22 @@ data:
   ZGW_ENDPOINT_OBJECTEN: {{ default "" .Values.settings.zgw.endpoint.objecten }}
   ZGW_ENDPOINT_OBJECTTYPEN: {{ default "" .Values.settings.zgw.endpoint.objectTypen }}
   ZGW_ENDPOINT_CONTACTMOMENTEN: {{ default .Values.settings.zgw.endpoint.openKlant .Values.settings.zgw.endpoint.contactMomenten }}
+  ZGW_ENDPOINT_DOCUMENTEN: {{ default "" .Values.settings.zgw.endpoint.documenten }}
+  ZGW_ENDPOINT_OPENVTB: {{ default "" .Values.settings.zgw.endpoint.openVtb }}
   ZGW_VARIABLE_OBJECTTYPE_TASKOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.taskObjectType.uuid | quote }}
   ZGW_VARIABLE_OBJECTTYPE_MESSAGEOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.messageObjectType.uuid | quote }}
   ZGW_VARIABLE_OBJECTTYPE_MESSAGEOBJECTTYPE_VERSION: {{ default 2 .Values.settings.zgw.variable.objectType.messageObjectType.version | quote }}
   ZGW_VARIABLE_OBJECTTYPE_DECISIONINFOOBJECTTYPE_UUIDS: {{ default "" .Values.settings.zgw.variable.objectType.decisionInfoObjectType.uuids | quote }}
   ZGW_VARIABLE_OBJECTTYPE_KTOOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.ktoObjectType.uuid | quote }}
+  ZGW_VARIABLE_OBJECTTYPE_PRINTOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.printObjectType.uuid | quote }}
   ZGW_WHITELIST_ZAAKCREATE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakCreate.ids | quote }}
   ZGW_WHITELIST_ZAAKUPDATE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakUpdate.ids | quote }}
   ZGW_WHITELIST_ZAAKCLOSE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakClose.ids | quote }}
   ZGW_WHITELIST_TASKASSIGNED_IDS: {{ default "*" .Values.settings.zgw.whitelist.taskAssigned.ids | quote }}
   ZGW_WHITELIST_DECISIONMADE_IDS: {{ default "*" .Values.settings.zgw.whitelist.decisionMade.ids | quote }}
   ZGW_WHITELIST_MESSAGE_ALLOWED: {{ default "true" .Values.settings.zgw.whitelist.message.allowed | quote }}
+  ZGW_WHITELIST_VTBMESSAGE_TYPES: {{ default "*" .Values.settings.zgw.whitelist.vtbMessage.types | quote }}
+  ZGW_WHITELIST_PRINT_ALLOWED: {{ default "false" .Values.settings.zgw.whitelist.print.allowed | quote }}
   NOTIFY_API_BASEURL: {{ .Values.settings.notify.api.baseUrl }}
   NOTIFY_TEMPLATEID_DECISIONMADE: {{ default "" .Values.settings.notify.templateId.decisionMade }}
   NOTIFY_TEMPLATEID_EMAIL_ZAAKCREATE: {{ .Values.settings.notify.templateId.email.zaakCreate }}
@@ -49,6 +54,8 @@ data:
   NOTIFY_TEMPLATEID_EMAIL_ZAAKCLOSE: {{ .Values.settings.notify.templateId.email.zaakClose }}
   NOTIFY_TEMPLATEID_EMAIL_TASKASSIGNED: {{ .Values.settings.notify.templateId.email.taskAssigned }}
   NOTIFY_TEMPLATEID_EMAIL_MESSAGERECEIVED: {{ .Values.settings.notify.templateId.email.messageReceived }}
+  NOTIFY_TEMPLATEID_EMAIL_MESSAGEBOX: {{ default "" .Values.settings.notify.templateId.email.messageBox }}
+  NOTIFY_TEMPLATEID_LETTER_MESSAGEBOX: {{ default "" .Values.settings.notify.templateId.letter.messageBox }}
   NOTIFY_TEMPLATEID_SMS_ZAAKCREATE: {{ .Values.settings.notify.templateId.sms.zaakCreate }}
   NOTIFY_TEMPLATEID_SMS_ZAAKUPDATE: {{ .Values.settings.notify.templateId.sms.zaakUpdate }}
   NOTIFY_TEMPLATEID_SMS_ZAAKCLOSE: {{ .Values.settings.notify.templateId.sms.zaakClose }}
