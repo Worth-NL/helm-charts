@@ -65,7 +65,7 @@ settings:
         messageBox:
   omc:
     actor:
-      # -- Recommended to pin this explicitly. Left unset, it defaults to a freshly-generated UUID on every `helm upgrade`, which now triggers a pod restart on every upgrade (not just real config changes) since ConfigMap/Secret content is hashed into the deployment's rollout trigger
+      # -- Required. The UUID of the actor registered in "OpenKlant" that every klantcontact OMC creates is linked to, so it has to be a real actor rather than any valid UUID
       id:
     auth:
       jwt:

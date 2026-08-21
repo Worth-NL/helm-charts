@@ -13,7 +13,8 @@ data:
   SENTRY_DSN: {{ .Values.settings.sentry.dsn }}
   SENTRY_ENVIRONMENT: {{ .Values.settings.sentry.environment }}
   {{- end }}
-  OMC_ACTOR_ID: {{ default uuidv4 .Values.settings.omc.actor.id }}
+  {{- /* Not defaulted: a generated UUID is a valid UUID but not a real actor in "OpenKlant", and every klantcontact OMC creates is linked to it. Enforced here rather than only in values.schema.json because the shared "uuid" definition permits null, so a key that ships unset satisfies the schema's "required". */}}
+  OMC_ACTOR_ID: {{ required "settings.omc.actor.id is required: set it to the UUID of the actor registered in OpenKlant" .Values.settings.omc.actor.id | quote }}
   OMC_AUTH_JWT_AUDIENCE: {{ default ("-" | quote) .Values.settings.omc.auth.jwt.audience }}
   OMC_AUTH_JWT_USERID: {{ default ("-" | quote) .Values.settings.omc.auth.jwt.userId}}
   OMC_AUTH_JWT_USERNAME: {{ default ("-" | quote) .Values.settings.omc.auth.jwt.userName }}
