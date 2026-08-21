@@ -1,0 +1,10 @@
+target-branch: main
+chart-dirs:
+  - .
+chart-repos:
+  - denhaag=https://gemeente-denhaag.github.io/helm-charts/
+  - bitnami=https://charts.bitnami.com/bitnami
+check-version-increment: true
+# Chart.yaml maintainer `name` fields here are display names, not GitHub logins — ct's default
+# maintainer validation calls the GitHub API expecting a real username and 404s otherwise.
+validate-maintainers: false
