@@ -1,6 +1,6 @@
 # notifynl-omc-nodep
 
-![Version: 0.15.3](https://img.shields.io/badge/Version-0.15.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
+![Version: 0.16.1](https://img.shields.io/badge/Version-0.16.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.1](https://img.shields.io/badge/AppVersion-2.0.1-informational?style=flat-square)
 
 Chart to deploy the NotifyNL OMC application.
 
@@ -60,11 +60,14 @@ Kubernetes: `>=1.26.6`
 | settings.notify.api.baseUrl | string | `"https://api.notifynl.nl"` |  |
 | settings.notify.api.key | string | `nil` |  |
 | settings.notify.templateId.decisionMade | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
+| settings.notify.templateId.email.messageBox | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox digitale-post fallback only - no SMS equivalent exists. |
 | settings.notify.templateId.email.messageReceived | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
 | settings.notify.templateId.email.taskAssigned | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
 | settings.notify.templateId.email.zaakClose | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
 | settings.notify.templateId.email.zaakCreate | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
 | settings.notify.templateId.email.zaakUpdate | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
+| settings.notify.templateId.letter.messageBox | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox postal-letter fallback. |
+| settings.notify.templateId.sms.<<.messageBox | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox digitale-post fallback only - no SMS equivalent exists. |
 | settings.notify.templateId.sms.<<.messageReceived | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
 | settings.notify.templateId.sms.<<.taskAssigned | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
 | settings.notify.templateId.sms.<<.zaakClose | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
@@ -89,22 +92,28 @@ Kubernetes: `>=1.26.6`
 | settings.zgw.auth.key.objectTypen | string | `nil` | It needs to be generated from "ObjectTypen" Web API service UI |
 | settings.zgw.auth.key.objecten | string | `nil` | It needs to be generated from "Objecten" Web API service UI |
 | settings.zgw.auth.key.openklant | string | `nil` | It needs to be generated for OMC Workflow v2 and above from "OpenKlant" 2.0 Web API service UI |
+| settings.zgw.auth.key.openvtb | string | `nil` | It needs to be generated from "Open VTB" Web API service UI. Required only if the MOBB/Berichtenbox scenario is used. |
 | settings.zgw.endpoint.besluiten | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
 | settings.zgw.endpoint.contactMomenten | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
+| settings.zgw.endpoint.documenten | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end. MOBB fetches real attachment content from here. |
 | settings.zgw.endpoint.objectTypen | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
 | settings.zgw.endpoint.objecten | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
 | settings.zgw.endpoint.openKlant | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
 | settings.zgw.endpoint.openNotificaties | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
+| settings.zgw.endpoint.openVtb | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end. Required only if the MOBB/Berichtenbox scenario is used. |
 | settings.zgw.endpoint.openZaak | string | `nil` | You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end |
 | settings.zgw.urn | string | `nil` | Urn identifying this OMC instance (OIN/RSIN) as the source of outgoing CloudEvents, e.g. "urn:nld:oin:{OIN}:{applicatie}" |
 | settings.zgw.variable.objectType.decisionInfoObjectType.uuids | string | `nil` | Is provided by the user based on "informatieobjecttype" from "informatieobject" retrieved from "OpenZaak" Web API service when querying "besluiten" |
 | settings.zgw.variable.objectType.ktoObjectType.uuid | string | `nil` |  |
 | settings.zgw.variable.objectType.messageObjectType.uuid | string | `nil` | Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service |
 | settings.zgw.variable.objectType.messageObjectType.version | int | `2` | It can be taken from "version" value set in "ObjectTypen" Web API service |
+| settings.zgw.variable.objectType.printObjectType.uuid | string | `nil` | Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service. Required only if the print (printstraat) scenario is used. |
 | settings.zgw.variable.objectType.taskObjectType.uuid | string | `nil` | Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service |
 | settings.zgw.whitelist.decisionMade.ids | string | `"*"` | Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service |
 | settings.zgw.whitelist.message.allowed | bool | `true` | Is provided by the user |
+| settings.zgw.whitelist.print.allowed | bool | `false` | Is provided by the user. Off by default: enabling it lets any object of the print objecttype be printed and posted, so it should be switched on deliberately per environment |
 | settings.zgw.whitelist.taskAssigned.ids | string | `"*"` | Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service |
+| settings.zgw.whitelist.vtbMessage.types | string | `"*"` | Is provided by the user based on the CloudEvent "type" received from "Open VTB" Web API service |
 | settings.zgw.whitelist.zaakClose.ids | string | `"*"` | Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service |
 | settings.zgw.whitelist.zaakCreate.ids | string | `"*"` | Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service |
 | settings.zgw.whitelist.zaakUpdate.ids | string | `"*"` | Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service |
