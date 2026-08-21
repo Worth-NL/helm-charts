@@ -149,6 +149,10 @@ settings:
       vtbMessage:
         # -- Is provided by the user based on the CloudEvent "type" received from "Open VTB" Web API service
         types: "*"
+      print:
+        # -- Is provided by the user. Off by default: enabling it lets any object of the print objecttype
+        # be printed and posted, so it should be switched on deliberately per environment
+        allowed: false
     variable:
       objectType:
         taskObjectType:
@@ -163,6 +167,9 @@ settings:
           # -- Is provided by the user based on "informatieobjecttype" from "informatieobject" retrieved from "OpenZaak" Web API service when querying "besluiten"
           uuids:
         ktoObjectType:
+          uuid:
+        printObjectType:
+          # -- Is provided by the user based on "objectType" from "kenmerken" from the initial notification received from "Notificaties" Web API service. Required only if the print (printstraat) scenario is used.
           uuid:
   kto:
     auth:

@@ -38,6 +38,7 @@ data:
   ZGW_VARIABLE_OBJECTTYPE_MESSAGEOBJECTTYPE_VERSION: {{ default 2 .Values.settings.zgw.variable.objectType.messageObjectType.version | quote }}
   ZGW_VARIABLE_OBJECTTYPE_DECISIONINFOOBJECTTYPE_UUIDS: {{ default "" .Values.settings.zgw.variable.objectType.decisionInfoObjectType.uuids | quote }}
   ZGW_VARIABLE_OBJECTTYPE_KTOOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.ktoObjectType.uuid | quote }}
+  ZGW_VARIABLE_OBJECTTYPE_PRINTOBJECTTYPE_UUID: {{ default "" .Values.settings.zgw.variable.objectType.printObjectType.uuid | quote }}
   ZGW_WHITELIST_ZAAKCREATE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakCreate.ids | quote }}
   ZGW_WHITELIST_ZAAKUPDATE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakUpdate.ids | quote }}
   ZGW_WHITELIST_ZAAKCLOSE_IDS: {{ default "*" .Values.settings.zgw.whitelist.zaakClose.ids | quote }}
@@ -45,6 +46,7 @@ data:
   ZGW_WHITELIST_DECISIONMADE_IDS: {{ default "*" .Values.settings.zgw.whitelist.decisionMade.ids | quote }}
   ZGW_WHITELIST_MESSAGE_ALLOWED: {{ default "true" .Values.settings.zgw.whitelist.message.allowed | quote }}
   ZGW_WHITELIST_VTBMESSAGE_TYPES: {{ default "*" .Values.settings.zgw.whitelist.vtbMessage.types | quote }}
+  ZGW_WHITELIST_PRINT_ALLOWED: {{ default "false" .Values.settings.zgw.whitelist.print.allowed | quote }}
   NOTIFY_API_BASEURL: {{ .Values.settings.notify.api.baseUrl }}
   NOTIFY_TEMPLATEID_DECISIONMADE: {{ default "" .Values.settings.notify.templateId.decisionMade }}
   NOTIFY_TEMPLATEID_EMAIL_ZAAKCREATE: {{ .Values.settings.notify.templateId.email.zaakCreate }}
