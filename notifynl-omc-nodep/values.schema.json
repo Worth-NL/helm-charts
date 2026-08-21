@@ -431,6 +431,14 @@
 													"$ref": "#/definitions/uuid"
 												}
 											}
+										},
+										"printObjectType": {
+											"type": "object",
+											"properties": {
+												"uuid": {
+													"$ref": "#/definitions/uuid"
+												}
+											}
 										}
 									}
 								}
@@ -485,6 +493,15 @@
 										"allowed": {
 											"type": "boolean",
 											"default": true
+										}
+									}
+								},
+								"print": {
+									"type": "object",
+									"properties": {
+										"allowed": {
+											"type": "boolean",
+											"default": false
 										}
 									}
 								}
