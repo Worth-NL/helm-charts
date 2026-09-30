@@ -178,6 +178,9 @@
 										},
 										"messageReceived": {
 											"$ref": "#/definitions/uuid"
+										},
+										"productCreated": {
+											"$ref": "#/definitions/uuid"
 										}
 									}
 								},
@@ -503,6 +506,14 @@
 										"allowed": {
 											"type": "boolean",
 											"default": false
+										}
+									}
+								},
+								"productCreate": {
+									"type": "object",
+									"properties": {
+										"ids": {
+											"$ref": "#/definitions/stringOrStar"
 										}
 									}
 								}
