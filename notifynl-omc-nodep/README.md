@@ -68,6 +68,11 @@ Kubernetes: `>=1.26.6`
 | settings.notify.templateId.email.zaakCreate | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
 | settings.notify.templateId.email.zaakUpdate | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
 | settings.notify.templateId.letter.messageBox | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox postal-letter fallback. |
+| settings.notify.templateId.letter.messageReceived | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant. |
+| settings.notify.templateId.letter.taskAssigned | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant. |
+| settings.notify.templateId.letter.zaakClose | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant. |
+| settings.notify.templateId.letter.zaakCreate | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant. |
+| settings.notify.templateId.letter.zaakUpdate | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant. |
 | settings.notify.templateId.sms.<<.messageBox | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox digitale-post fallback only - no SMS equivalent exists. |
 | settings.notify.templateId.sms.<<.messageReceived | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal |
 | settings.notify.templateId.sms.<<.productCreated | string | `nil` | Should be generated per specific business use case from "Notify NL" Admin Portal. Product created (Open Product) scenario only - e-mail only, no SMS or letter equivalent exists. |
