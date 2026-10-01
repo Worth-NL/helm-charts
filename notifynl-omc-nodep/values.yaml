@@ -63,6 +63,16 @@ settings:
       sms:
         !!merge <<: *notificationTemplates
       letter:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant.
+        zaakCreate:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant.
+        zaakUpdate:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant.
+        zaakClose:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant.
+        taskAssigned:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant.
+        messageReceived:
         # -- Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox postal-letter fallback.
         messageBox:
   omc:

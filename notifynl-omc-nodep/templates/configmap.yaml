@@ -59,6 +59,11 @@ data:
   NOTIFY_TEMPLATEID_EMAIL_MESSAGERECEIVED: {{ .Values.settings.notify.templateId.email.messageReceived }}
   NOTIFY_TEMPLATEID_EMAIL_MESSAGEBOX: {{ default "" .Values.settings.notify.templateId.email.messageBox }}
   NOTIFY_TEMPLATEID_EMAIL_PRODUCTCREATED: {{ default "" .Values.settings.notify.templateId.email.productCreated }}
+  NOTIFY_TEMPLATEID_LETTER_ZAAKCREATE: {{ default "" .Values.settings.notify.templateId.letter.zaakCreate }}
+  NOTIFY_TEMPLATEID_LETTER_ZAAKUPDATE: {{ default "" .Values.settings.notify.templateId.letter.zaakUpdate }}
+  NOTIFY_TEMPLATEID_LETTER_ZAAKCLOSE: {{ default "" .Values.settings.notify.templateId.letter.zaakClose }}
+  NOTIFY_TEMPLATEID_LETTER_TASKASSIGNED: {{ default "" .Values.settings.notify.templateId.letter.taskAssigned }}
+  NOTIFY_TEMPLATEID_LETTER_MESSAGERECEIVED: {{ default "" .Values.settings.notify.templateId.letter.messageReceived }}
   NOTIFY_TEMPLATEID_LETTER_MESSAGEBOX: {{ default "" .Values.settings.notify.templateId.letter.messageBox }}
   NOTIFY_TEMPLATEID_SMS_ZAAKCREATE: {{ .Values.settings.notify.templateId.sms.zaakCreate }}
   NOTIFY_TEMPLATEID_SMS_ZAAKUPDATE: {{ .Values.settings.notify.templateId.sms.zaakUpdate }}

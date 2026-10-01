@@ -203,6 +203,29 @@
 											"$ref": "#/definitions/uuid"
 										}
 									}
+								},
+								"letter": {
+									"type": "object",
+									"properties": {
+										"zaakCreate": {
+											"$ref": "#/definitions/uuid"
+										},
+										"zaakUpdate": {
+											"$ref": "#/definitions/uuid"
+										},
+										"zaakClose": {
+											"$ref": "#/definitions/uuid"
+										},
+										"taskAssigned": {
+											"$ref": "#/definitions/uuid"
+										},
+										"messageReceived": {
+											"$ref": "#/definitions/uuid"
+										},
+										"messageBox": {
+											"$ref": "#/definitions/uuid"
+										}
+									}
 								}
 							}
 						}
