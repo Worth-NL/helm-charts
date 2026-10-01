@@ -58,9 +58,21 @@ settings:
         messageReceived:
         # -- Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox digitale-post fallback only - no SMS equivalent exists.
         messageBox:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Product created (Open Product) scenario only - e-mail only, no SMS or letter equivalent exists.
+        productCreated:
       sms:
         !!merge <<: *notificationTemplates
       letter:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant.
+        zaakCreate:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant.
+        zaakUpdate:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant.
+        zaakClose:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant.
+        taskAssigned:
+        # -- Should be generated per specific business use case from "Notify NL" Admin Portal. Letter (postal) variant.
+        messageReceived:
         # -- Should be generated per specific business use case from "Notify NL" Admin Portal. MOBB/Berichtenbox postal-letter fallback.
         messageBox:
   omc:
@@ -109,6 +121,8 @@ settings:
         objectTypen:
         # -- It needs to be generated from "Open VTB" Web API service UI. Required only if the MOBB/Berichtenbox scenario is used.
         openvtb:
+        # -- It needs to be generated from "Open Producten" Web API service UI. Required only if the Product created (Open Product) scenario is used.
+        openproducten:
     endpoint:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end
       openNotificaties:
@@ -128,6 +142,8 @@ settings:
       documenten:
       # -- You have to use the domain part from URLs where you are hosting the dedicated Open services, without slash at the end. Required only if the MOBB/Berichtenbox scenario is used.
       openVtb:
+      # -- Base URL of the "Open Producten" API including its path (e.g. "https://openproduct.example.com/producten/api/v1"), without slash at the end. Required only if the Product created (Open Product) scenario is used.
+      openProducten:
     whitelist:
       zaakCreate:
         # -- Is provided by the user based on "Identificatie" property of case type retrieved from case URI ("zaak") from "OpenZaak" Web API service
@@ -150,6 +166,9 @@ settings:
       vtbMessage:
         # -- Is provided by the user based on the CloudEvent "type" received from "Open VTB" Web API service
         types: "*"
+      productCreate:
+        # -- Is provided by the user based on the "code" of the product type ("producttype.code") retrieved from the product ("Open Producten" Web API service), e.g. "PARKEERVERGUNNING-A". These are not case type identifications.
+        ids: "*"
       print:
         # -- Is provided by the user. Off by default: enabling it lets any object of the print objecttype
         # be printed and posted, so it should be switched on deliberately per environment
