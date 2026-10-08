@@ -40,10 +40,10 @@ Kubernetes: `>=1.26.6`
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | settings.aspnetcore.environment | string | `"Production"` | Defines in which mode (environment) the OMC application is running |
-| settings.dashboard.enabled | bool | `false` | Serves the status dashboard (/status, /status/flow) and its APIs, including the live trace stream. They have no authentication, so keep this off unless the environment needs it. The image must also be built with BUILD_DASHBOARD=true |
 | settings.brp.baseUrl | string | `nil` | Base URL of the BRP (Haal Centraal) API gateway |
 | settings.brp.clientCert.pem.path | string | `""` | Absolute path to the PEM-encoded client certificate used for mutual TLS (mTLS) authentication |
 | settings.brp.clientKey.pem.path | string | `""` | Absolute path to the PEM-encoded private key corresponding to the BRP client certificate |
+| settings.dashboard.enabled | bool | `false` | Serves the status dashboard (/status, /status/flow) and its APIs, including the live trace stream. They have no authentication, so keep this off unless the environment needs it. The image must also be built with BUILD_DASHBOARD=true |
 | settings.keycloak.authServerUrl | string | `nil` | Base URL of the Keycloak authorization server used to obtain access tokens for BRP |
 | settings.keycloak.clientId | string | `""` | Client identifier registered in Keycloak for OMC BRP access |
 | settings.keycloak.clientSecret | string | `""` | Client secret used for OAuth2 token exchange with Keycloak |
