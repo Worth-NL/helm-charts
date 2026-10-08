@@ -33,6 +33,9 @@ settings:
   aspnetcore:
     # -- Defines in which mode (environment) the OMC application is running
     environment: Production
+  dashboard:
+    # -- Serves the status dashboard (/status, /status/flow) and its APIs, including the live trace stream. They have no authentication, so keep this off unless the environment needs it. The image must also be built with BUILD_DASHBOARD=true
+    enabled: false
   sentry:
     # -- It points out to the Sentry project configured to store captured events from the app (messages, exceptions)
     dsn: https://5cfe508231898da382bc22bc2c164488@o4507152178741248.ingest.de.sentry.io/4507152246112336
