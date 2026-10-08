@@ -9,6 +9,7 @@ data:
   COMPlus_EnableDiagnostics: "0"
   ASPNETCORE_URLS: http://*:{{ default 5270 .Values.app.port }}
   ASPNETCORE_ENVIRONMENT: {{ default "Production" .Values.settings.aspnetcore.environment }}
+  DASHBOARD_ENABLED: {{ default false .Values.settings.dashboard.enabled | quote }}
   {{- if .Values.settings.sentry.environment }}
   SENTRY_DSN: {{ .Values.settings.sentry.dsn }}
   SENTRY_ENVIRONMENT: {{ .Values.settings.sentry.environment }}

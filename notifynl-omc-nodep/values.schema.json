@@ -121,6 +121,15 @@
 						"environment"
 					]
 				},
+				"dashboard": {
+					"type": "object",
+					"properties": {
+						"enabled": {
+							"type": "boolean",
+							"default": false
+						}
+					}
+				},
 				"sentry": {
 					"type": "object",
 					"properties": {
