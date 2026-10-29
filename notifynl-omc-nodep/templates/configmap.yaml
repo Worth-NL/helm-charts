@@ -74,5 +74,6 @@ data:
   KEYCLOAK_AUTHSERVERURL: {{ .Values.settings.keycloak.authServerUrl }}
   KEYCLOAK_TOKENEXCHANGEAUDIENCE: {{ .Values.settings.keycloak.tokenExchangeAudience }}
   BRP_BASEURL: {{ .Values.settings.brp.baseUrl }}
+  BRP_GEBRUIK_TESTADRES: {{ default false .Values.settings.brp.useTestAddress | quote }}
   MIJNOVERHEID_AUTH_TOKEN_ENDPOINT: {{ default "" .Values.settings.mijnOverheid.auth.token.endpoint }}
   MIJNOVERHEID_WEBHOOK_URL: {{ default "" .Values.settings.mijnOverheid.webhook.url }}
