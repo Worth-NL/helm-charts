@@ -31,7 +31,7 @@ service:
   port: 80
 settings:
   aspnetcore:
-    # -- Defines in which mode (environment) the OMC application is running. Must not be Production when settings.brp.useTestAddress is on: the OMC then refuses to start
+    # -- Defines in which mode (environment) the OMC application is running. settings.brp.useTestAddress only applies when this is not Production
     environment: Production
   dashboard:
     # -- Serves the status dashboard (/status, /status/flow) and its APIs, including the live trace stream. They have no authentication, so keep this off unless the environment needs it. The image must also be built with BUILD_DASHBOARD=true
@@ -220,7 +220,7 @@ settings:
   brp:
     # -- Base URL of the BRP (Haal Centraal) API gateway
     baseUrl:
-    # -- For test environments without a BRP connection: BRP is not called and every Berichtenbox letter goes to the Worth Systems test address. Refused in production: the OMC does not start unless settings.aspnetcore.environment is set to something other than Production (e.g. Test)
+    # -- For test environments without a BRP connection: BRP is not called and every Berichtenbox letter goes to the Worth Systems test address. Only applied when settings.aspnetcore.environment is not Production (e.g. Test); with Production it is always switched off
     useTestAddress: false
     clientCert:
       pem:
