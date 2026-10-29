@@ -652,6 +652,10 @@
 							],
 							"format": "uri"
 						},
+						"useTestAddress": {
+							"type": "boolean",
+							"default": false
+						},
 						"clientCert": {
 							"type": "object",
 							"properties": {
